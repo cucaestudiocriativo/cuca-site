@@ -1,0 +1,20 @@
+name: Rename index v2 to index
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rename index v2.html to index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git mv "index v2.html" "index.html"
+          git commit -m "Rename index v2.html to index.html"
+          git push

@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CUCA. — Criamos com alma, pensamos com cuidado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+/* =========================================
+   CUCA. — LANDING PAGE
+   Design: Premium Creative Studio
+   ========================================= */
+
+:root {
+  --orange:   #EB5416;
+  --terracota:#A25C45;
+  --gold:     #D9A063;
+  --cream:    #DDD0C0;
+  --offwhite: #F7F3EE;
+  --dark:     #1A1210;
+  --mid:      #3D2B25;
+
+  --font-title: 'Sora', sans-serif;
+  --font-body:  'Montserrat', sans-serif;
+
+  --radius: 4px;
+  --transition: 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--offwhite);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--offwhite); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+
+/* ---- UTILITIES ---- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+.tag.light {
+  color: var(--cream);
+  border-color: rgba(221,208,192,0.4);
+}
+
+h1,h2,h3,h4 { font-family: var(--font-title); line-height: 1.1; }
+
+p { font-family: var(--font-body); line-height: 1.75; }
+
+/* ---- BUTTONS ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 1rem 2.2rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.12);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn:hover::after { opacity: 1; }
+
+.btn-primary {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(235,84,22,0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(235,84,22,0.45);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--orange);
+  border: 1.5px solid var(--orange);
+}
+
+.btn-outline:hover {
+  background: var(--orange);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-light {
+  background: #fff;
+  color: var(--orange);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.btn-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.btn-ghost {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+}
+
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* ARROW ICON */
+.arrow { display: inline-block; transition: transform 0.3s; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ===================================================
+   NAV
+   =================================================== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(247,243,238,0.92);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--orange);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--orange); }
+
+.nav-cta { display: flex; align-items: center; gap: 1rem; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--dark);
+  transition: all 0.3s;
+}
+
+/* ===================================================
+   HERO
+   =================================================== */
+#hero {
+  min-height: 100vh;
+  background: var(--dark);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(235,84,22,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(162,92,69,0.15) 0%, transparent 60%);
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* Geometric decorations */
+.hero-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(235,84,22,0.2);
+}
+
+.hero-circle-1 {
+  width: 600px; height: 600px;
+  top: -200px; right: -200px;
+}
+
+.hero-circle-2 {
+  width: 300px; height: 300px;
+  bottom: 60px; left: 8%;
+  border-color: rgba(217,160,99,0.15);
+}
+
+.hero-arch {
+  position: absolute;
+  right: 8%;
+  bottom: 0;
+  width: 180px;
+  height: 320px;
+  border: 1.5px solid rgba(235,84,22,0.25);
+  border-radius: 90px 90px 0 0;
+  border-bottom: none;
+}
+
+.hero-arch-inner {
+  position: absolute;
+  right: 8%;
+  bottom: 0;
+  width: 120px;
+  height: 220px;
+  border: 1px solid rgba(217,160,99,0.2);
+  border-radius: 60px 60px 0 0;
+  border-bottom: none;
+  transform: translateX(30px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 8rem 0 6rem;
+  max-width: 760px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--transition) 0.2s forwards;
+}
+
+.hero-eyebrow-dot {
+  width: 8px; height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(235,84,22,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(235,84,22,0); }
+}
+
+.hero-eyebrow span {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--transition) 0.35s forwards;
+}
+
+.hero-h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+
+.hero-h1 .under {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-h1 .under::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: lineIn 0.6s ease 1.2s forwards;
+}
+
+@keyframes lineIn { to { transform: scaleX(1); } }
+
+.hero-sub {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(221,208,192,0.8);
+  max-width: 540px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--transition) 0.5s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--transition) 0.65s forwards;
+}
+
+.hero-stats {
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  display: flex;
+  gap: 3rem;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--transition) 0.85s forwards;
+}
+
+.hero-stat-item {
+  text-align: right;
+}
+
+.hero-stat-num {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(221,208,192,0.6);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* marquee strip */
+.marquee-strip {
+  background: var(--orange);
+  padding: 0.9rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track span {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0 2.5rem;
+}
+
+.marquee-track span::before {
+  content: '●';
+  margin-right: 2.5rem;
+  opacity: 0.5;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===================================================
+   PAIN SECTION
+   =================================================== */
+#dores {
+  padding: 7rem 0;
+  background: var(--offwhite);
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--terracota);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--cream);
+  border: 1.5px solid var(--cream);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.pain-card {
+  background: var(--offwhite);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: background 0.4s;
+  cursor: default;
+}
+
+.pain-card:hover {
+  background: #fff;
+}
+
+.pain-card:hover .pain-icon { color: var(--orange); }
+
+.pain-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  transition: color 0.3s;
+  color: var(--terracota);
+}
+
+.pain-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.pain-card p {
+  font-size: 0.85rem;
+  color: #6b5a52;
+  line-height: 1.65;
+}
+
+.pain-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--orange);
+  transition: width 0.5s ease;
+}
+
+.pain-card:hover::after { width: 100%; }
+
+/* ===================================================
+   SOLUTION
+   =================================================== */
+#solucao {
+  padding: 7rem 0;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+#solucao::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(235,84,22,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.solution-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.solution-left .section-title { color: #fff; }
+.solution-left .section-sub { color: rgba(221,208,192,0.7); text-align: left; margin: 0 0 2.5rem; }
+
+.solution-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.service-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cream);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.7rem 1rem;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.service-tag:hover {
+  background: rgba(235,84,22,0.15);
+  border-color: rgba(235,84,22,0.3);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.service-tag-dot {
+  width: 6px; height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Right side: service cards */
+.solution-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sol-card {
+  background: rgba(26,18,16,0.95);
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.4s;
+}
+
+.sol-card:hover {
+  background: rgba(235,84,22,0.1);
+}
+
+.sol-card-num {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.sol-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.sol-card p {
+  font-size: 0.78rem;
+  color: rgba(221,208,192,0.55);
+  line-height: 1.6;
+}
+
+/* ===================================================
+   SERVIÇOS COMPLETOS
+   =================================================== */
+#servicos {
+  padding: 7rem 0;
+  background: var(--offwhite);
+}
+
+.services-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+
+.services-intro-left .section-title { text-align: left; margin-bottom: 1rem; }
+.services-intro-right p {
+  font-size: 0.95rem;
+  color: #6b5a52;
+  line-height: 1.8;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--cream);
+  border: 1.5px solid var(--cream);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.svc-card {
+  background: var(--offwhite);
+  padding: 2.5rem 1.8rem;
+  position: relative;
+  transition: background 0.35s;
+  cursor: default;
+  min-height: 200px;
+}
+
+.svc-card:hover { background: #fff; }
+
+.svc-card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.svc-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.svc-card p {
+  font-size: 0.8rem;
+  color: #7a6459;
+  line-height: 1.6;
+}
+
+.svc-card .svc-num {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-family: var(--font-title);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--orange);
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--orange);
+  transition: height 0.4s ease;
+}
+
+.svc-card:hover::before { height: 100%; }
+
+/* ===================================================
+   DIFERENCIAIS
+   =================================================== */
+#diferenciais {
+  padding: 7rem 0;
+  background: var(--terracota);
+  position: relative;
+  overflow: hidden;
+}
+
+#diferenciais::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 80% 50%, rgba(235,84,22,0.3) 0%, transparent 60%);
+}
+
+.diferenciais-layout {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.dif-left .section-title { color: #fff; margin-bottom: 1.5rem; }
+
+.dif-left p {
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+
+.dif-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.8rem 2rem;
+  background: rgba(255,255,255,0.06);
+  border-left: 2px solid transparent;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.dif-item:hover {
+  background: rgba(255,255,255,0.12);
+  border-left-color: var(--cream);
+  transform: translateX(6px);
+}
+
+.dif-num {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+
+.dif-content h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.dif-content p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+/* ===================================================
+   MID CTA BANNER
+   =================================================== */
+.mid-cta {
+  background: var(--orange);
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mid-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 20px,
+    rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px
+  );
+}
+
+.mid-cta-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.mid-cta h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.8rem;
+}
+
+.mid-cta p {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.mid-cta-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===================================================
+   CASES
+   =================================================== */
+#cases {
+  padding: 7rem 0;
+  background: var(--offwhite);
+}
+
+.cases-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 1.5px;
+  background: var(--cream);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.5px;
+}
+
+.cases-grid-b {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 1.5px;
+  background: var(--cream);
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+.case-card {
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-card-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(26,18,16,0.8) 0%, transparent 55%);
+  position: relative;
+  z-index: 2;
+}
+
+.case-card-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s var(--transition);
+}
+
+.case-card:hover .case-card-bg { transform: scale(1.04); }
+
+.case-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.case-card-tag {
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.case-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.case-card p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 0.3rem;
+}
+
+/* Testimonials */
+.testimonials {
+  margin-top: 4rem;
+}
+
+.testimonials-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.testimonial-card {
+  background: #fff;
+  border: 1.5px solid var(--cream);
+  padding: 2rem;
+  border-radius: 4px;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 8px 32px rgba(162,92,69,0.12);
+  transform: translateY(-3px);
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  font-family: var(--font-title);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.testimonial-text {
+  font-size: 0.88rem;
+  color: #5a4a42;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.testimonial-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--cream);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--terracota);
+  font-size: 0.9rem;
+}
+
+.testimonial-name {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.testimonial-role {
+  font-size: 0.75rem;
+  color: var(--terracota);
+  margin-top: 0.1rem;
+}
+
+/* ===================================================
+   PROCESSO
+   =================================================== */
+#processo {
+  padding: 7rem 0;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+#processo::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(217,160,99,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.processo-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.processo-header .section-title { color: #fff; }
+.processo-header .section-sub { color: rgba(221,208,192,0.6); }
+
+.processo-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  gap: 0;
+}
+
+/* connecting line */
+.processo-steps::before {
+  content: '';
+  position: absolute;
+  top: 42px;
+  left: calc(12.5% + 30px);
+  right: calc(12.5% + 30px);
+  height: 1px;
+  background: linear-gradient(to right, var(--orange), transparent 30%, transparent 70%, var(--orange));
+  border-top: 1px dashed rgba(235,84,22,0.3);
+}
+
+.passo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.passo-num {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(235,84,22,0.12);
+  border: 1.5px solid rgba(235,84,22,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--orange);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.35s;
+}
+
+.passo:hover .passo-num {
+  background: var(--orange);
+  color: #fff;
+  border-color: var(--orange);
+  box-shadow: 0 0 32px rgba(235,84,22,0.4);
+}
+
+.passo h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.01em;
+}
+
+.passo p {
+  font-size: 0.82rem;
+  color: rgba(221,208,192,0.55);
+  line-height: 1.65;
+}
+
+/* ===================================================
+   FORMULÁRIO
+   =================================================== */
+#contato {
+  padding: 7rem 0;
+  background: var(--offwhite);
+  position: relative;
+}
+
+.contato-layout {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contato-left .section-title { text-align: left; margin-bottom: 1rem; }
+
+.contato-left p {
+  font-size: 0.95rem;
+  color: #6b5a52;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.contato-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contato-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+.contato-info-item-icon {
+  width: 36px; height: 36px;
+  background: rgba(235,84,22,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* FORM */
+.form-card {
+  background: #fff;
+  border: 1.5px solid var(--cream);
+  padding: 3rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 40px rgba(162,92,69,0.08);
+}
+
+.form-title {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.form-sub {
+  font-size: 0.85rem;
+  color: var(--terracota);
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-group.full { grid-column: 1 / -1; }
+
+.form-group label {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terracota);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.9rem 1.1rem;
+  border: 1.5px solid var(--cream);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--dark);
+  background: var(--offwhite);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(235,84,22,0.08);
+  background: #fff;
+}
+
+.form-group input::placeholder { color: #c4b5ac; }
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-submit {
+  width: 100%;
+  padding: 1.1rem;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.form-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #a09089;
+  margin-top: 1rem;
+}
+
+/* ===================================================
+   FOOTER
+   =================================================== */
+footer {
+  background: var(--dark);
+  padding: 4rem 0 2rem;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2rem;
+}
+
+.footer-brand-name {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.8rem;
+}
+
+.footer-tagline {
+  font-size: 0.82rem;
+  color: rgba(221,208,192,0.5);
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.social-link {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: rgba(255,255,255,0.6);
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-col h4 {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+
+.footer-col ul { list-style: none; }
+
+.footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a {
+  font-size: 0.82rem;
+  color: rgba(221,208,192,0.55);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover { color: var(--cream); }
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-contact-item span:first-child {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.footer-contact-item span:last-child {
+  font-size: 0.82rem;
+  color: rgba(221,208,192,0.55);
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(221,208,192,0.3);
+}
+
+.footer-slogan {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(235,84,22,0.5);
+  letter-spacing: 0.1em;
+}
+
+/* WhatsApp Float */
+.wpp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 998;
+  width: 56px; height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: all 0.3s;
+  animation: float 3s ease-in-out infinite;
+}
+
+.wpp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.wpp-float:hover { animation: none; transform: scale(1.1); }
+
+/* ===================================================
+   ANIMATIONS
+   =================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s var(--transition);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===================================================
+   MOBILE RESPONSIVE
+   =================================================== */
+@media (max-width: 900px) {
+  nav .nav-links, nav .nav-cta .btn-outline { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-h1 { font-size: clamp(2.4rem, 8vw, 3.5rem); }
+  .hero-stats { position: static; margin-top: 3rem; flex-wrap: wrap; gap: 2rem; }
+  .hero-stat-item { text-align: left; }
+  .hero-arch, .hero-arch-inner, .hero-circle { display: none; }
+
+  .pain-grid { grid-template-columns: 1fr 1fr; }
+  .solution-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .solution-services { grid-template-columns: 1fr 1fr; }
+  .solution-right { grid-template-columns: 1fr 1fr; }
+
+  .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+
+  .diferenciais-layout { grid-template-columns: 1fr; gap: 3rem; }
+
+  .cases-grid, .cases-grid-b { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .processo-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .processo-steps::before { display: none; }
+
+  .contato-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row { grid-template-columns: 1fr; }
+
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+  .cases-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+@media (max-width: 540px) {
+  .container { padding: 0 1.2rem; }
+  .pain-grid, .services-grid { grid-template-columns: 1fr; }
+  .processo-steps { grid-template-columns: 1fr; }
+  .solution-services, .solution-right { grid-template-columns: 1fr; }
+  .footer-main { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .mid-cta-btns { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">CUCA.</a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#contato" class="btn btn-outline" style="padding:0.65rem 1.4rem;font-size:0.78rem;">Diagnóstico gratuito</a>
+  </div>
+  <button class="hamburger" aria-label="Menu" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-circle hero-circle-1"></div>
+  <div class="hero-circle hero-circle-2"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch-inner"></div>
+
+  <div class="container" style="width:100%;max-width:1200px;">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span>Estúdio Criativo & Estratégia Digital</span>
+      </div>
+
+      <h1 class="hero-h1">
+        Sua marca merece<br>
+        <em>posicionamento</em><br>
+        de <span class="under">verdade.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Transformamos marcas em referências digitais — com estratégia, branding e conteúdo que geram resultado real. Não apenas presença.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contato" class="btn btn-primary">
+          Quero posicionar minha marca <span class="arrow">→</span>
+        </a>
+        <a href="https://wa.me/5571991947028?text=Olá!%20Quero%20um%20diagnóstico%20gratuito%20para%20minha%20marca." target="_blank" class="btn btn-ghost">
+          Falar com a CUCA
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Foco em resultado</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">+10</div>
+        <div class="hero-stat-label">Marcas transformadas</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Países de atuação</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Branding</span><span>Social Media</span><span>Estratégia</span><span>Conteúdo</span><span>Tráfego Pago</span><span>Automação</span><span>Identidade Visual</span><span>Posicionamento</span><span>Gestão de Marca</span><span>Relatórios</span>
+    <span>Branding</span><span>Social Media</span><span>Estratégia</span><span>Conteúdo</span><span>Tráfego Pago</span><span>Automação</span><span>Identidade Visual</span><span>Posicionamento</span><span>Gestão de Marca</span><span>Relatórios</span>
+  </div>
+</div>
+
+<!-- DORES -->
+<section id="dores">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Você se identifica?</div>
+      <h2 class="section-title">Quando o digital não entrega o que promete</h2>
+      <p class="section-sub">Reconhece alguma dessas situações? São exatamente elas que a CUCA foi criada para resolver.</p>
+    </div>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon">🧭</div>
+        <h3>Marca sem posicionamento</h3>
+        <p>Você existe, mas não é lembrado. Seu diferencial não aparece e o público não entende por que te escolher.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📉</div>
+        <h3>Redes sociais sem resultado</h3>
+        <p>Posts saindo, seguidores parados, zero mensagem no direct. Muito esforço, pouco retorno.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔁</div>
+        <h3>Conteúdo sem estratégia</h3>
+        <p>Postagens soltas que não constroem nada. Cada post começa do zero, sem identidade nem fio condutor.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📢</div>
+        <h3>Baixo engajamento real</h3>
+        <p>Curtidas de amigos, comentários genéricos. Nenhum potencial cliente chegando pelo digital.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">👤</div>
+        <h3>Marca sem autoridade</h3>
+        <p>Concorrentes menores aparecem como referência antes de você. Seu expertise não está sendo comunicado.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">⏸️</div>
+        <h3>Falta de constância</h3>
+        <p>Meses bons, meses apagados. A irregularidade impede que o algoritmo — e o público — confie em você.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section id="solucao">
+  <div class="container">
+    <div class="solution-layout">
+      <div class="solution-left reveal">
+        <div class="tag light">Como resolvemos</div>
+        <h2 class="section-title">Estratégia que move marca. Criatividade que converte.</h2>
+        <p class="section-sub">A CUCA não entrega post. Entrega posicionamento — construído com método, executado com alma e medido com dados.</p>
+
+        <div class="solution-services">
+          <div class="service-tag"><span class="service-tag-dot"></span>Planejamento estratégico</div>
+          <div class="service-tag"><span class="service-tag-dot"></span>Branding & identidade</div>
+          <div class="service-tag"><span class="service-tag-dot"></span>Conteúdo inteligente</div>
+          <div class="service-tag"><span class="service-tag-dot"></span>Gestão de redes</div>
+          <div class="service-tag"><span class="service-tag-dot"></span>Tráfego pago</div>
+          <div class="service-tag"><span class="service-tag-dot"></span>Automação digital</div>
+        </div>
+
+        <a href="#contato" class="btn btn-primary">Solicitar diagnóstico gratuito <span class="arrow">→</span></a>
+      </div>
+
+      <div class="solution-right reveal reveal-delay-2">
+        <div class="sol-card">
+          <div class="sol-card-num">01</div>
+          <h3>Diagnóstico estratégico</h3>
+          <p>Analisamos sua marca, concorrentes e oportunidades antes de qualquer execução.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-card-num">02</div>
+          <h3>Identidade com propósito</h3>
+          <p>Branding que comunica quem você é antes de qualquer palavra.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-card-num">03</div>
+          <h3>Conteúdo que posiciona</h3>
+          <p>Cada post, Reel e Story construindo autoridade de forma consistente.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-card-num">04</div>
+          <h3>Dados + criatividade</h3>
+          <p>Relatórios reais, decisões melhores. Crescimento mensurável, não achismo.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-card-num">05</div>
+          <h3>Automação inteligente</h3>
+          <p>Respostas automáticas, funis e fluxos que trabalham por você 24h.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-card-num">06</div>
+          <h3>Atendimento próximo</h3>
+          <p>Você fala com quem cria. Sem ruído, sem intermediário, sem promessa vaga.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS COMPLETOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="services-intro">
+      <div class="services-intro-left reveal">
+        <div class="tag">O que entregamos</div>
+        <h2 class="section-title">Tudo que sua<br>marca precisa,<br>num só lugar.</h2>
+      </div>
+      <div class="services-intro-right reveal reveal-delay-2">
+        <p>A CUCA é um estúdio criativo completo. Não terceirizamos o que é essencial para o seu resultado. Cada serviço é conectado ao posicionamento maior da sua marca — não existe execução desconectada de estratégia aqui.</p>
+      </div>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="svc-card">
+        <span class="svc-num">01</span>
+        <span class="svc-card-icon">📱</span>
+        <h3>Social Media</h3>
+        <p>Gestão completa das redes com planejamento editorial, criação e publicação consistente.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">02</span>
+        <span class="svc-card-icon">🎨</span>
+        <h3>Brand Designer</h3>
+        <p>Identidade visual com alma. Do logo ao sistema completo de marca.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">03</span>
+        <span class="svc-card-icon">✍️</span>
+        <h3>Redator Estratégico</h3>
+        <p>Textos que posicionam, convencem e convertem — sem clichês, com voz própria.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">04</span>
+        <span class="svc-card-icon">🎬</span>
+        <h3>Filmmaker</h3>
+        <p>Produção audiovisual com direção criativa para Reels, vídeos institucionais e campanhas.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">05</span>
+        <span class="svc-card-icon">📸</span>
+        <h3>Fotografia</h3>
+        <p>Ensaios de marca que constroem imagem premium e coerência visual nas redes.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">06</span>
+        <span class="svc-card-icon">🤝</span>
+        <h3>Atendimento & Vendas</h3>
+        <p>Um profissional dedicado ao relacionamento com leads e clientes — convertendo interesse em contrato.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">07</span>
+        <span class="svc-card-icon">⚡</span>
+        <h3>Automação de Mensagens</h3>
+        <p>Fluxos automáticos no WhatsApp e DMs que qualificam leads e respondem 24h por dia.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">08</span>
+        <span class="svc-card-icon">📊</span>
+        <h3>Gestor de Tráfego</h3>
+        <p>Campanhas pagas no Meta e Google com foco em CAC baixo e retorno real sobre investimento.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">09</span>
+        <span class="svc-card-icon">🔐</span>
+        <h3>Portal do Cliente</h3>
+        <p>Área exclusiva com calendário editorial, aprovações, entregas e comunicação centralizada.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">10</span>
+        <span class="svc-card-icon">📈</span>
+        <h3>Relatório de Desempenho</h3>
+        <p>Dados reais, análise estratégica e recomendações claras todo mês — sem enrolação.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">11</span>
+        <span class="svc-card-icon">🔍</span>
+        <h3>Análise de Perfil Estratégica</h3>
+        <p>Diagnóstico completo do seu perfil: posicionamento, conteúdo, conversão e oportunidades.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">12</span>
+        <span class="svc-card-icon">🎯</span>
+        <h3>Análise de Stories</h3>
+        <p>Auditoria dos Stories com foco em engajamento, retenção e estratégia de relacionamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="container">
+    <div class="diferenciais-layout">
+      <div class="dif-left reveal">
+        <div class="tag light">Por que a CUCA</div>
+        <h2 class="section-title">Mais do que agência.<br>Parceira de marca.</h2>
+        <p>A diferença não está no que entregamos. Está em como pensamos antes de entregar.</p>
+        <a href="#contato" class="btn btn-light">Agendar reunião <span class="arrow">→</span></a>
+      </div>
+
+      <div class="dif-right reveal reveal-delay-2">
+        <div class="dif-item">
+          <span class="dif-num">01</span>
+          <div class="dif-content">
+            <h3>Estratégia antes da estética</h3>
+            <p>Primeiro entendemos quem você é, para quem você fala e o que você quer construir. O bonito vem depois — e faz sentido.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <span class="dif-num">02</span>
+          <div class="dif-content">
+            <h3>Você fala com quem cria</h3>
+            <p>Sem SAC genérico, sem telefone sem fim. Atendimento direto com a equipe que trabalha na sua marca.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <span class="dif-num">03</span>
+          <div class="dif-content">
+            <h3>Comunicação humanizada</h3>
+            <p>Tom de voz construído para conectar com pessoas reais. Sem enrolação corporativa, sem linguagem de press release.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <span class="dif-num">04</span>
+          <div class="dif-content">
+            <h3>Foco em resultado, sempre</h3>
+            <p>Métricas que importam para o negócio. Não vendemos curtidas — vendemos posicionamento e conversão.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <span class="dif-num">05</span>
+          <div class="dif-content">
+            <h3>Identidade visual com propósito</h3>
+            <p>Cada elemento visual carrega intenção estratégica. Nada é decorativo por acidente.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <span class="dif-num">06</span>
+          <div class="dif-content">
+            <h3>Visão global, alma brasileira</h3>
+            <p>Estúdio com presença no Brasil e em Portugal. Referências internacionais, olhar local.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MID CTA -->
+<div class="mid-cta">
+  <div class="mid-cta-inner">
+    <h2>Pronto para parar de postar<br>e começar a posicionar?</h2>
+    <p>Diagnóstico gratuito. Sem compromisso. Com direcionamento real.</p>
+    <div class="mid-cta-btns">
+      <a href="#contato" class="btn btn-light">Solicitar diagnóstico gratuito <span class="arrow">→</span></a>
+      <a href="https://wa.me/5571991947028?text=Olá!%20Quero%20conversar%20sobre%20o%20posicionamento%20da%20minha%20marca." target="_blank" class="btn btn-ghost">Falar agora no WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="container">
+    <div class="cases-header reveal">
+      <div>
+        <div class="tag">Resultados reais</div>
+        <h2 class="section-title">Marcas que já<br>passaram pela CUCA</h2>
+      </div>
+      <a href="https://wa.me/5571991947028?text=Quero%20ver%20mais%20cases%20da%20CUCA!" target="_blank" class="btn btn-outline">Ver mais cases <span class="arrow">→</span></a>
+    </div>
+
+    <!-- Case cards visual -->
+    <div class="cases-grid reveal">
+      <div class="case-card">
+        <div class="case-card-bg">
+          <div class="case-placeholder" style="background:linear-gradient(135deg,#A25C45,#EB5416);width:100%;height:100%;">
+            <span style="font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:rgba(255,255,255,0.15);">CUCA.</span>
+          </div>
+        </div>
+        <div class="case-card-inner">
+          <div class="case-card-tag">Branding + Social Media</div>
+          <h3>Daniela Merelles</h3>
+          <p>Rebranding completo + gestão estratégica de redes</p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-bg">
+          <div class="case-placeholder" style="background:linear-gradient(135deg,#1A1210,#A25C45);width:100%;height:100%;">
+            <span style="font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:rgba(255,255,255,0.12);">CUCA.</span>
+          </div>
+        </div>
+        <div class="case-card-inner">
+          <div class="case-card-tag">Produção Audiovisual</div>
+          <h3>Bia Brandão</h3>
+          <p>Direção criativa + filmagem + estratégia de conteúdo</p>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-card-bg">
+          <div class="case-placeholder" style="background:linear-gradient(135deg,#D9A063,#EB5416);width:100%;height:100%;">
+            <span style="font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:rgba(255,255,255,0.15);">CUCA.</span>
+          </div>
+        </div>
+        <div class="case-card-inner">
+          <div class="case-card-tag">Identidade Visual</div>
+          <h3>Sua marca aqui</h3>
+          <p>Próximo case pode ser o seu — fale com a CUCA</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Depoimentos -->
+    <div class="testimonials reveal">
+      <h3 class="testimonials-title">O que dizem sobre a CUCA</h3>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">A CUCA transformou a forma como minha marca é percebida. A estratégia deles é diferente — não é sobre post bonito, é sobre construir algo real.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">D</div>
+            <div>
+              <div class="testimonial-name">Daniela Merelles</div>
+              <div class="testimonial-role">Empreendedora</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">Profissionalismo, criatividade e atenção aos detalhes. Sinto que a CUCA realmente entende o que minha marca precisa comunicar.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">B</div>
+            <div>
+              <div class="testimonial-name">Bia Brandão</div>
+              <div class="testimonial-role">Profissional liberal</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">Finalmente uma agência que pensa no meu negócio antes de pensar no post. O nível de cuidado com o posicionamento é outro.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <div class="testimonial-name">Cliente CUCA</div>
+              <div class="testimonial-role">Médico especialista</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo">
+  <div class="container">
+    <div class="processo-header reveal">
+      <div class="tag light">Como trabalhamos</div>
+      <h2 class="section-title">Do zero ao posicionamento</h2>
+      <p class="section-sub">Um processo pensado para que nada se perca — da primeira conversa à última entrega.</p>
+    </div>
+
+    <div class="processo-steps">
+      <div class="passo reveal">
+        <div class="passo-num">01</div>
+        <h3>Diagnóstico</h3>
+        <p>Analisamos sua marca, mercado e concorrência. Mapeamos oportunidades e identificamos o que precisa mudar.</p>
+      </div>
+      <div class="passo reveal reveal-delay-1">
+        <div class="passo-num">02</div>
+        <h3>Planejamento</h3>
+        <p>Construímos a estratégia completa: posicionamento, identidade, calendário editorial e plano de crescimento.</p>
+      </div>
+      <div class="passo reveal reveal-delay-2">
+        <div class="passo-num">03</div>
+        <h3>Execução</h3>
+        <p>Produção de conteúdo, gestão de redes, campanhas pagas e automações — tudo com consistência e qualidade.</p>
+      </div>
+      <div class="passo reveal reveal-delay-3">
+        <div class="passo-num">04</div>
+        <h3>Crescimento</h3>
+        <p>Relatórios, ajustes estratégicos e evolução contínua. Resultados que crescem com o tempo — não somem.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:4rem;" class="reveal">
+      <a href="#contato" class="btn btn-primary">Começar meu diagnóstico <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section id="contato">
+  <div class="container">
+    <div class="contato-layout">
+      <div class="contato-left reveal">
+        <div class="tag">Vamos conversar?</div>
+        <h2 class="section-title">Sua marca<br>começa aqui.</h2>
+        <p>Preencha o formulário ao lado e receba um diagnóstico gratuito do seu posicionamento digital. Sem enrolação, sem compromisso — só direcionamento real.</p>
+
+        <div class="contato-info">
+          <div class="contato-info-item">
+            <div class="contato-info-item-icon">📍</div>
+            <span>Brasil & Portugal — atendimento remoto</span>
+          </div>
+          <div class="contato-info-item">
+            <div class="contato-info-item-icon">📱</div>
+            <span>(71) 99194-7028</span>
+          </div>
+          <div class="contato-info-item">
+            <div class="contato-info-item-icon">📧</div>
+            <span>cucaestudiocriativo@gmail.com</span>
+          </div>
+          <div class="contato-info-item">
+            <div class="contato-info-item-icon">📸</div>
+            <span>@somos.cuca</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card reveal reveal-delay-2">
+        <div class="form-title">Diagnóstico Gratuito</div>
+        <p class="form-sub">Responda em 2 minutos. A CUCA entra em contato em até 24h.</p>
+
+        <form id="leadForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo *</label>
+              <input type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="form-group">
+              <label>Empresa / Marca</label>
+              <input type="text" placeholder="Nome da empresa" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Instagram</label>
+              <input type="text" placeholder="@suamarca" />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp *</label>
+              <input type="tel" placeholder="(00) 00000-0000" required />
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label>Segmento / Área de atuação</label>
+            <select>
+              <option value="" disabled selected>Selecione seu segmento</option>
+              <option>Médico / Saúde</option>
+              <option>Advogado / Jurídico</option>
+              <option>Arquitetura / Design</option>
+              <option>Negócio / Varejo</option>
+              <option>Serviços / Consultoria</option>
+              <option>Influenciador / Personal Brand</option>
+              <option>Outros</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label>Qual é o maior desafio da sua marca hoje?</label>
+            <textarea placeholder="Conta um pouco sobre o que você quer resolver ou melhorar no digital..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            Quero meu diagnóstico gratuito <span class="arrow">→</span>
+          </button>
+        </form>
+
+        <p class="form-note">🔒 Seus dados estão seguros. Sem spam, prometemos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <div class="footer-brand-name">CUCA.</div>
+        <p class="footer-tagline">Criamos com alma,<br>pensamos com cuidado.</p>
+        <div class="social-links">
+          <a href="https://instagram.com/somos.cuca" target="_blank" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/5571991947028" target="_blank" class="social-link" aria-label="WhatsApp">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#">Social Media</a></li>
+          <li><a href="#">Branding</a></li>
+          <li><a href="#">Tráfego Pago</a></li>
+          <li><a href="#">Automação</a></li>
+          <li><a href="#">Filmmaker</a></li>
+          <li><a href="#">Fotografia</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Quem somos</a></li>
+          <li><a href="#">Cases</a></li>
+          <li><a href="#">Processo</a></li>
+          <li><a href="#">Portal do Cliente</a></li>
+          <li><a href="#contato">Diagnóstico gratuito</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <div class="footer-contact-item">
+          <span>📱</span>
+          <span>(71) 99194-7028</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📧</span>
+          <span>cucaestudiocriativo@gmail.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>Brasil & Portugal</span>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <a href="https://wa.me/5571991947028?text=Olá!%20Quero%20conversar%20sobre%20minha%20marca." target="_blank" class="btn btn-primary" style="font-size:0.78rem;padding:0.75rem 1.4rem;">
+            Falar agora →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 CUCA Estúdio Criativo. Todos os direitos reservados.</p>
+      <p class="footer-slogan">Criamos com alma. Pensamos com cuidado.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/5571991947028?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20a%20CUCA." target="_blank" class="wpp-float" aria-label="WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+// NAV scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+reveals.forEach(el => io.observe(el));
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Recebemos! Entraremos em contato em breve.';
+  btn.style.background = '#2d8a4e';
+  btn.disabled = true;
+
+  // redirect to WhatsApp after 1.5s
+  setTimeout(() => {
+    window.open(
+      'https://wa.me/5571991947028?text=Olá!%20Acabei%20de%20preencher%20o%20formulário%20no%20site%20da%20CUCA%20e%20quero%20meu%20diagnóstico%20gratuito!',
+      '_blank'
+    );
+  }, 1500);
+}
+</script>
+</body>
+</html>

@@ -3,6 +3,9 @@ name: Rename index v2 to index
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   rename:
     runs-on: ubuntu-latest

@@ -1,4 +1,4 @@
-name: Reorganizar arquivos index e sobre
+name: Atualizar index para v11
 
 on:
   workflow_dispatch:
@@ -14,13 +14,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Reorganizar index v3 e sobre v2
+      - name: Coloca cuca-landing-v11 no ar
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git mv "index.html" "index-v2.html"
-          git mv "index v3.html" "index.html"
-          git mv "sobre.html" "sobre-v1.html"
-          git mv "sobre v2.html" "sobre.html"
-          git commit -m "Coloca index v3 e sobre v2 no ar"
+          git mv "index.html" "index-v3.html"
+          git mv "cuca-landing-v11.html" "index.html"
+          git commit -m "Coloca cuca-landing-v11 no ar"
           git push

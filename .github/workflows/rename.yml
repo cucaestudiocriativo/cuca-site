@@ -1,4 +1,4 @@
-name: Rename index v2 to index
+name: Reorganizar arquivos index e sobre
 
 on:
   workflow_dispatch:
@@ -14,10 +14,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Rename index v2.html to index.html
+      - name: Reorganizar index v3 e sobre v2
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git mv "index v2.html" "index.html"
-          git commit -m "Rename index v2.html to index.html"
+          git mv "index.html" "index-v2.html"
+          git mv "index v3.html" "index.html"
+          git mv "sobre.html" "sobre-v1.html"
+          git mv "sobre v2.html" "sobre.html"
+          git commit -m "Coloca index v3 e sobre v2 no ar"
           git push

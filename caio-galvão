@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calendário de Conteúdo 2026 — Caio Galvão | CUCA.</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --orange:    #EB5416;
+  --terracota: #A25C45;
+  --gold:      #D9A063;
+  --cream:     #DDD0C0;
+  --offwhite:  #F7F3EE;
+  --dark:      #1A1210;
+  --mid:       #3D2B25;
+  --font-title:'Sora', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--offwhite);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/* ---- HEADER ---- */
+.app-header {
+  background: var(--dark);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.app-logo {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+}
+.app-client {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.app-client label {
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(221,208,192,0.5);
+}
+.app-client input {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 2px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  width: 220px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.app-client input:focus { border-color: var(--orange); }
+.app-client input::placeholder { color: rgba(255,255,255,0.25); }
+.app-actions { display: flex; gap: 0.7rem; }
+.btn-app {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1.2rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-print {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(235,84,22,0.35);
+}
+.btn-print:hover { background: #d94a10; }
+.btn-clear {
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.btn-clear:hover { color: #ff6b6b; border-color: #ff6b6b; }
+
+/* ---- CATEGORIES BAR ---- */
+.cat-bar {
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.cat-label {
+  font-family: var(--font-title);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #999;
+  margin-right: 0.5rem;
+}
+.cat-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border: 1.5px solid transparent;
+  cursor: default;
+  transition: transform 0.2s;
+}
+.cat-pill:hover { transform: translateY(-1px); }
+.cat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ---- MONTH NAV ---- */
+.month-nav {
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0 2rem;
+  position: sticky;
+  top: 112px;
+  z-index: 80;
+}
+.month-tabs { display: flex; gap: 0; overflow-x: auto; }
+.month-tab {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.1rem;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.month-tab:hover { color: var(--orange); }
+.month-tab.active { color: var(--dark); border-bottom-color: var(--orange); }
+.month-tab.has-content { color: var(--terracota); }
+.month-tab.has-content.active { color: var(--dark); border-bottom-color: var(--orange); }
+
+/* ---- CALENDAR WRAP ---- */
+.calendar-wrap { padding: 2rem; }
+.month-view { display: none; }
+.month-view.active { display: block; }
+
+/* PRINT */
+.print-header {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--orange);
+}
+@media print { .print-header { display: flex !important; } }
+
+/* ---- MONTH HEADER ---- */
+.month-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.month-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+}
+.month-title span { color: var(--orange); }
+.month-note-wrap { flex: 1; min-width: 200px; }
+.month-note-label {
+  font-family: var(--font-title);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.month-note {
+  width: 100%;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--dark);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.month-note:focus { border-color: var(--orange); }
+
+/* ---- CALENDAR GRID ---- */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.cal-weekday {
+  background: var(--dark);
+  color: rgba(255,255,255,0.6);
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.7rem;
+  text-align: center;
+}
+.cal-day {
+  background: #fff;
+  min-height: 130px;
+  padding: 0.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: background 0.15s;
+}
+.cal-day:hover { background: #faf8f5; }
+.cal-day.empty { background: rgba(0,0,0,0.02); }
+.cal-day.today {
+  background: #fff8f4;
+  outline: 2px solid var(--orange);
+  outline-offset: -2px;
+}
+.day-num {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #bbb;
+  line-height: 1;
+}
+.day-num.sunday { color: #d4a5a5; }
+.cal-day.today .day-num { color: var(--orange); }
+
+/* ---- TAGS ---- */
+.day-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+.day-tag {
+  font-family: var(--font-title);
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+.day-tag:hover { opacity: 0.75; }
+
+/* ---- CONTENT ---- */
+.day-content {
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: #555;
+  background: transparent;
+  line-height: 1.5;
+  width: 100%;
+}
+.day-content::placeholder { color: #ccc; }
+
+/* ---- ADD CAT BUTTON ---- */
+.day-add-cat {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+  line-height: 1;
+  font-weight: 300;
+}
+.cal-day:hover .day-add-cat { opacity: 0.7; }
+.day-add-cat:hover { opacity: 1 !important; }
+
+/* ---- PICKER ---- */
+.cat-picker {
+  display: none;
+  position: absolute;
+  bottom: 28px;
+  right: 0;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  z-index: 200;
+  min-width: 200px;
+  overflow: hidden;
+}
+.cat-picker.open { display: block; }
+.cat-picker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  color: var(--dark);
+}
+.cat-picker-item:hover { background: var(--offwhite); }
+
+/* ---- ESTRATÉGIA BANNER ---- */
+.estrategia-banner {
+  background: linear-gradient(135deg, var(--dark) 0%, #2D1A12 100%);
+  border-radius: 8px;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  border-left: 4px solid var(--orange);
+}
+.estrategia-icon { font-size: 1.8rem; flex-shrink: 0; }
+.estrategia-label {
+  font-family: var(--font-title);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.3rem;
+}
+.estrategia-titulo {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.estrategia-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(221,208,192,0.7);
+  line-height: 1.6;
+}
+
+/* ---- POSTS PLANEJADOS ---- */
+.posts-planejados {
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  border: 1px solid rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+.posts-header {
+  background: var(--dark);
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.posts-header-title {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(221,208,192,0.8);
+}
+.posts-header-badge {
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+}
+.posts-lista {
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.post-item {
+  border-left: 3px solid #eee;
+  padding: 0.7rem 1rem;
+  background: var(--offwhite);
+  border-radius: 0 6px 6px 0;
+  transition: border-color 0.2s;
+}
+.post-item:hover { border-left-color: var(--orange); }
+.post-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.3rem;
+  flex-wrap: wrap;
+}
+.post-item-data {
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #aaa;
+}
+.post-item-cat {
+  font-family: var(--font-title);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.03em;
+}
+.post-item-titulo {
+  font-family: var(--font-title);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.2rem;
+}
+.post-item-desc {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: #777;
+  line-height: 1.5;
+}
+.post-item-roteiro {
+  margin-top: 0.5rem;
+  background: rgba(235,84,22,0.05);
+  border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid rgba(235,84,22,0.1);
+}
+.post-item-roteiro-label {
+  font-family: var(--font-title);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.3rem;
+}
+.post-item-roteiro-text {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: #555;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+/* ---- REF BLOCKS ---- */
+.ref-block {
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+.ref-block-header {
+  background: var(--mid);
+  padding: 0.8rem 1.2rem;
+}
+.ref-block-title {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(221,208,192,0.8);
+}
+.ref-block-body { padding: 1rem 1.2rem; }
+.ref-col-labels {
+  display: grid;
+  grid-template-columns: 1fr 2fr 28px;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.ref-col-label {
+  font-family: var(--font-title);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+}
+.ref-row { display: grid; grid-template-columns: 1fr 2fr 28px; gap: 0.5rem; margin-bottom: 0.4rem; align-items: center; }
+.dir-row { display: grid; grid-template-columns: 1fr 28px; gap: 0.5rem; margin-bottom: 0.4rem; align-items: center; }
+.ref-input, .dir-input {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 0.45rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--dark);
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fafaf8;
+  width: 100%;
+}
+.ref-input:focus, .dir-input:focus { border-color: var(--orange); background: #fff; }
+.ref-remove {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.2rem;
+  transition: color 0.2s;
+}
+.ref-remove:hover { color: #ff6b6b; }
+.ref-add-btn {
+  background: none;
+  border: 1px dashed rgba(235,84,22,0.3);
+  color: var(--orange);
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.2s;
+}
+.ref-add-btn:hover { background: rgba(235,84,22,0.05); border-style: solid; }
+
+/* ---- SEMANAS ---- */
+.week-strategy {
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+.week-strategy-header {
+  background: var(--mid);
+  padding: 0.8rem 1.2rem;
+}
+.week-strategy-title {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(221,208,192,0.8);
+}
+.week-rows { padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.week-row { display: grid; grid-template-columns: 90px 1fr; gap: 0.8rem; align-items: center; }
+.week-label {
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+}
+.week-input {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 0.45rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--dark);
+  outline: none;
+  background: #fafaf8;
+  transition: border-color 0.2s;
+}
+.week-input:focus { border-color: var(--orange); background: #fff; }
+
+/* ---- LEGEND ---- */
+.cat-legend {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 0 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .cal-grid { gap: 2px; }
+  .cal-day { min-height: 90px; }
+  .day-tag { font-size: 0.52rem; }
+  .calendar-wrap { padding: 1rem; }
+  .app-header { flex-wrap: wrap; gap: 0.7rem; }
+}
+
+@media print {
+  .app-header, .cat-bar, .month-nav, .day-add-cat, .cat-picker { display: none !important; }
+  .print-header { display: flex !important; }
+  .month-view { display: block !important; }
+  .calendar-wrap { padding: 0; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="app-header">
+  <div class="app-logo">CUCA.</div>
+  <div class="app-client">
+    <label>Cliente</label>
+    <input type="text" id="clientName" placeholder="Caio Galvão" value="Caio Galvão" oninput="updateClientName()" />
+  </div>
+  <div class="app-actions">
+    <button class="btn-app btn-print" onclick="window.print()">Imprimir / PDF</button>
+    <button class="btn-app btn-clear" onclick="clearAll()">Limpar tudo</button>
+  </div>
+</div>
+
+<!-- CATEGORIES BAR -->
+<div class="cat-bar" id="categoriesBar">
+  <span class="cat-label">Categorias</span>
+</div>
+
+<!-- MONTH NAV -->
+<div class="month-nav">
+  <div class="month-tabs" id="monthTabs"></div>
+</div>
+
+<!-- CALENDAR -->
+<div class="calendar-wrap" id="calendarWrap"></div>
+
+<script>
+// ============================================
+// CATEGORIAS — adaptadas ao Caio
+// ============================================
+const CATEGORIES = [
+  { id: 'apresentacao', label: 'Apresentação / Marca',   color: '#1A1210', bg: '#EDE8E5' },
+  { id: 'educativo',    label: 'Educação Nutricional',   color: '#4A90D9', bg: '#EBF3FC' },
+  { id: 'autoridade',   label: 'Autoridade / Método',    color: '#7B68EE', bg: '#F0EEFF' },
+  { id: 'humanizacao',  label: 'Fora do Consultório',   color: '#A25C45', bg: '#F5EDE9' },
+  { id: 'viral',        label: 'Trends / Viral',         color: '#16A085', bg: '#E8F8F5' },
+  { id: 'saojoo',       label: 'São João / Sazonal',     color: '#D9A063', bg: '#FDF4E7' },
+  { id: 'vendas',       label: 'CTA / Consulta',         color: '#C0392B', bg: '#FDECEA' },
+  { id: 'stories',      label: 'Direcionamento Stories', color: '#EB5416', bg: '#FEF0EB' },
+  { id: 'fora',         label: 'Fora do Consultório',    color: '#A25C45', bg: '#F5EDE9' },
+];
+
+const MONTHS = [
+  { name: 'Janeiro',   short: 'Jan', days: 31, startDay: 3 },
+  { name: 'Fevereiro', short: 'Fev', days: 28, startDay: 6 },
+  { name: 'Março',     short: 'Mar', days: 31, startDay: 6 },
+  { name: 'Abril',     short: 'Abr', days: 30, startDay: 2 },
+  { name: 'Maio',      short: 'Mai', days: 31, startDay: 4 },
+  { name: 'Junho',     short: 'Jun', days: 30, startDay: 0 },
+  { name: 'Julho',     short: 'Jul', days: 31, startDay: 2 },
+  { name: 'Agosto',    short: 'Ago', days: 31, startDay: 5 },
+  { name: 'Setembro',  short: 'Set', days: 30, startDay: 1 },
+  { name: 'Outubro',   short: 'Out', days: 31, startDay: 3 },
+  { name: 'Novembro',  short: 'Nov', days: 30, startDay: 6 },
+  { name: 'Dezembro',  short: 'Dez', days: 31, startDay: 1 },
+];
+
+const WEEKDAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+// ---- CONTEÚDO PRÉ-POPULADO ----
+const PRESET_CONTENT = {
+  // JUNHO
+  '5-18': '🎬 REEL 1 — São João\n"Guia de sobrevivência calórica do arraiá"\n📍 Gravar no mercado 12-14/06',
+  '5-21': '📲 Stories\nCaixa de perguntas:\n"Qual sua maior dificuldade com alimentação?"',
+  '5-24': '🎬 REEL 2 — São João\n"Como montar o dia pra chegar no arraiá sem culpa"\n🎯 Tom: aliado, não restritivo',
+  // JULHO
+  '6-1':  '📲 Stories\nEnquete: você tem rotina alimentar durante a semana?',
+  '6-3':  '🖼️ CARROSSEL 1\n"Conheça o seu nutri"\nApresentação completa do Caio\nInsp: @larissamillard.nutri',
+  '6-8':  '🎬 REEL 3\nRotina matinal do Caio\nDinâmico, curto (15–30s) • Trend adaptado',
+  '6-10': '📲 Stories\nBastidor: foto/vídeo no consultório ou rotina da semana',
+  '6-14': '🖼️ CARROSSEL 2\n"A nutrição que eu acredito"\nFrases dos pilares ao redor da foto\nInsp: @marimoreno.nutri',
+  '6-17': '🎬 REEL 4\n"O maior mito da nutrição esportiva"\nFalado, direto, baseado em evidência',
+  '6-21': '📲 Stories\nDepoimento de paciente ou enquete sobre o método',
+  '6-22': '🖼️ CARROSSEL 3\n"3 erros que travam seu resultado na academia"\nFoto atleta + texto sobreposto',
+  '6-25': '',
+  '6-28': '📲 Stories\nCaixa de perguntas sobre nutrição esportiva',
+  '6-29': '🎬 REEL 5\nTrend da semana\n(identificar ~1 semana antes)',
+  '6-21': '🎬 REEL — Agora é foco\nPós-Copa e São João • Tom: recomeço sem culpa\nCTA: \'Se quer começar ou recomeçar, me chama\'',
+  '6-31': '🖼️ CARROSSEL 4\nBastidores da semana do Caio\nFora do Consultório real — rotina, momentos, vida fora do consultório',
+  // FINS DE SEMANA — JUNHO
+  '5-7': '📸 Fora do Consultório\nFim de semana do Caio\nFoto casual — refeição fora, treino, saída com amigos\n\"A vida equilibrada começa fora do consultório também\"',
+  '5-14': '📸 Fora do Consultório\nAlmoço ou jantar de fim de semana\nMostrar que ele também come fora e vive normalmente',
+  '5-15': '📸 Fora do Consultório\nMomento pessoal — treino, hobby ou descanso\nOpcional: não postar se preferir descansar',
+  // FINS DE SEMANA — JULHO
+  '6-5': '📸 Fora do Consultório\nFim de semana em Salvador\nFoto casual — praia, saída, rolê com amigos',
+  '6-6': '📸 Fora do Consultório\nCafé da manhã de domingo\nO que o próprio Caio come no dia a dia\n\"Domingo também é dia de comer bem (e gostoso)\"',
+  '6-12': '📸 Fora do Consultório\nTreino de fim de semana ou atividade ao ar livre\nSalvador tem cenário lindo — usar a favor',
+  '6-13': '📸 Fora do Consultório\nAlmoço em família ou com amigos\n\"Equilíbrio é isso — comer junto, sem culpa\"',
+  '6-19': '📸 Fora do Consultório\nMomento de descanso ou hobby do Caio\nAutenticidade gera conexão',
+  '6-20': '📸 Fora do Consultório\nRolê de domingo — bar, praia, restaurante\n\"Vida saudável não é sinônimo de vida sem graça\"',
+  '6-26': '📸 Fora do Consultório\nFim de semana pós-semana intensa\nFoto pessoal + legenda sobre consistência vs perfeição',
+  '6-27': '📸 Fora do Consultório\nMomento favorito do fim de semana\nAlgo genuíno — comida, lugar, pessoa',
+
+  // AGOSTO — conteúdo completo
+  '7-1': '📸 Fora do Consultório\nPrimeiro fim de semana de agosto\nFoto casual em Salvador',
+  '7-2': '📸 Fora do Consultório\nCafé da manhã ou rolê de domingo\nVida equilibrada fora do trabalho',
+  '7-4': '🎬 REEL 6\n\"O que ninguém te conta sobre emagrecer\"\nDesmistificação • Gancho forte • Alta taxa de salvamento',
+  '7-7': '🖼️ CARROSSEL 5\n\"O que muda de verdade quando você tem acompanhamento\"\nAntes/depois de comportamento — não de corpo',
+  '7-8': '📲 Stories\nCaixa de perguntas:\n\"Me manda sua maior dúvida sobre nutrição esportiva\"',
+  '7-9': '📸 Fora do Consultório 🎁 Dia dos Pais\nPost humanizado — figura paterna + gancho de nutrição masculina',
+  '7-13': '🎬 REEL 7\n\"Nutrição pra quem treina mas não é atleta\"\nFala com quem malha 3-4x/semana • Educativo + autoridade',
+  '7-15': '📸 Fora do Consultório\nTreino ou atividade ao ar livre em Salvador',
+  '7-16': '📸 Fora do Consultório\nMomento pessoal — descanso ou hobby do Caio',
+  '7-17': '🖼️ CARROSSEL 6 🏥 Dia Nacional da Saúde\n\"Saúde não é só estética\"\nEnergia, disposição, relação com comida, sono, saúde mental',
+  '7-19': '📲 Stories 📸 Dia Mundial da Fotografia\nFoto real do dia — consultório, treino ou momento pessoal',
+  '7-22': '🎬 REEL 8 🎭 Dia do Folclore\n\"Comida brasileira e dieta: você não precisa abrir mão\"\nAcarajé, tapioca, cuscuz • Muito forte pra Salvador • Alto potencial viral',
+  '7-23': '📸 Fora do Consultório\nAlmoço ou comida baiana\nIdentidade soteropolitana',
+  '7-26': '🖼️ CARROSSEL 7\n\"Por que você começa e não consegue manter?\"\nCiclo início-abandono • Comportamento alimentar • Compulsão',
+  '7-29': '📲 Stories\nContagem regressiva 👀\n\"Dia 31 tem coisa especial aqui\"',
+  '7-30': '📸 Fora do Consultório\nBastidor pré-Dia do Nutricionista\nReflexão e preparação',
+  '7-31': '🏅 DIA DO NUTRICIONISTA\n\"Por que escolhi a nutrição\"\nHistória pessoal + valores + método + CTA\n📌 MELHOR FOTO/VÍDEO DO MÊS',
+};
+
+const PRESET_CATS = {
+  '5-18': ['viral','saojoo'],
+  '5-21': ['stories'],
+  '5-24': ['viral','saojoo'],
+  '6-1':  ['stories'],
+  '6-3':  ['apresentacao'],
+  '6-8':  ['viral','humanizacao'],
+  '6-10': ['stories','humanizacao'],
+  '6-14': ['autoridade','apresentacao'],
+  '6-17': ['educativo','autoridade'],
+  '6-21': ['stories'],
+  '6-21': ['vendas','humanizacao'],
+  '6-22': ['educativo'],
+  '6-28': ['stories'],
+  '6-29': ['viral'],
+  '6-31': ['humanizacao'],
+  // FINS DE SEMANA
+  '5-7': ['humanizacao'],
+  '5-14': ['humanizacao'],
+  '5-15': ['humanizacao'],
+  '6-5': ['humanizacao'],
+  '6-6': ['humanizacao'],
+  '6-12': ['humanizacao'],
+  '6-13': ['humanizacao'],
+  '6-19': ['humanizacao'],
+  '6-20': ['humanizacao'],
+  '6-26': ['humanizacao'],
+  '6-27': ['humanizacao'],
+
+  // AGOSTO cats
+  '7-1': ['fora'],
+  '7-2': ['fora'],
+  '7-4': ['viral','educativo'],
+  '7-7': ['autoridade','vendas'],
+  '7-8': ['stories'],
+  '7-9': ['fora'],
+  '7-13': ['educativo','autoridade'],
+  '7-15': ['fora'],
+  '7-16': ['fora'],
+  '7-17': ['educativo','autoridade'],
+  '7-19': ['stories','fora'],
+  '7-22': ['viral','saojoo'],
+  '7-23': ['fora'],
+  '7-26': ['educativo','autoridade'],
+  '7-29': ['stories'],
+  '7-30': ['fora'],
+  '7-31': ['apresentacao','vendas'],
+};
+
+const PRESET_NOTES = {
+  5: 'JUNHO — Lançamento leve com São João. 2 Reels sazonais para viralizar. Gravar no fim de semana 12–14/06, soltar 18/06 e 24/06.',
+  6: 'JULHO — Mês de lançamento de verdade. Apresentação + autoridade + engajamento. Post de conversão no final do mês. Objetivo: formar base sólida de seguidores-pacientes. ⚠️ Dia do Nutricionista = 31/ago.',
+};
+
+const PRESET_WEEKS = {
+  '5-1': 'Pré-lançamento — produzir os 2 Reels do São João',
+  '5-2': 'Lançamento Reel 1 (18/jun) + Stories de aquecimento',
+  '5-3': 'Lançamento Reel 2 (24/jun) + São João',
+  '5-4': 'Análise dos resultados dos Reels',
+  '6-1': 'Apresentação — Carrossel "Conheça o seu nutri" + Reel rotina matinal',
+  '6-2': 'Autoridade — Carrossel "A nutrição que acredito" + Reel educativo',
+  '6-3': 'Engajamento — Carrossel educativo + Stories depoimento',
+  '6-4': 'Conversão — CTA de consulta (25/jul) + Reel viral + Fora do Consultório',
+};
+
+const PRESET_REFS = {
+  5: [
+    { profile: '@marimoreno.nutri', about: 'Estilo de carrossel com frases flutuando na foto' },
+    { profile: '@larissamillard.nutri', about: 'Estrutura de apresentação profissional' },
+  ],
+  6: [
+    { profile: '@marimoreno.nutri', about: 'Carrossel "A nutrição que acredito" — frases ao redor da foto' },
+    { profile: '@larissamillard.nutri', about: 'Carrossel "Conheça sua nutri" — estrutura e CTA' },
+    { profile: '@caiogalvao.nutri', about: 'Referência de vídeo corrida — conteúdo esportivo' },
+  ],
+};
+
+const PRESET_DIRS = {
+  5: [
+    'Prioridade: gravar os 2 Reels antes de 15/06',
+    'Tom dos Reels: ALIADO — "deixa o povo curtir o arraiá"',
+    'CTA principal: "Salva esse vídeo" (métrica de salvamento)',
+  ],
+  6: [
+    'S1: apresentação do Caio como pessoa + profissional',
+    'S2: pilar de autoridade — mostrar o método e o que ele acredita',
+    'S3: educativo + engajamento — conteúdo que gera comentário',
+    'S4: conversão — CTA de consulta (25/jul) + Reel viral + Carrossel humanização',
+    'Stories: sempre complementar os posts com bastidores e perguntas',
+    'Linguagem: direta, confiante, humana — geração Z e wellness',
+  ],
+};
+
+// ---- STATE ----
+const PRESET_VERSION = 'v3-agosto';
+
+function buildPresetState() {
+  return {
+    _version: PRESET_VERSION,
+    clientName: 'Caio Galvão',
+    content: { ...PRESET_CONTENT },
+    categories: { ...PRESET_CATS },
+    notes: { ...PRESET_NOTES },
+    weeks: { ...PRESET_WEEKS },
+    refs: JSON.parse(JSON.stringify(PRESET_REFS)),
+    dirs: JSON.parse(JSON.stringify(PRESET_DIRS)),
+  };
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('caio-cal-2026') || 'null');
+    if (!saved || saved._version !== PRESET_VERSION) {
+      // Versão desatualizada — mescla preservando edições do usuário mas injeta novos presets
+      const fresh = buildPresetState();
+      if (saved) {
+        // Preserva edições manuais do usuário (content, activeMonth, clientName)
+        fresh.clientName = saved.clientName || fresh.clientName;
+        fresh.activeMonth = saved.activeMonth;
+        // Mescla content: preset como base, edições do usuário por cima
+        fresh.content = { ...fresh.content, ...saved.content };
+        fresh.categories = { ...fresh.categories, ...saved.categories };
+        // Notas/semanas/refs/dirs: só preservar meses que já existiam (5 e 6), agosto vem dos presets
+        [5, 6].forEach(m => {
+          if (saved.notes && saved.notes[m]) fresh.notes[m] = saved.notes[m];
+          if (saved.weeks) [1,2,3,4].forEach(w => {
+            const k = `${m}-${w}`;
+            if (saved.weeks[k]) fresh.weeks[k] = saved.weeks[k];
+          });
+          if (saved.refs && saved.refs[m]) fresh.refs[m] = saved.refs[m];
+          if (saved.dirs && saved.dirs[m]) fresh.dirs[m] = saved.dirs[m];
+        });
+        // postEdits preservados
+        if (saved.postEdits) fresh.postEdits = saved.postEdits;
+      }
+      localStorage.setItem('caio-cal-2026', JSON.stringify(fresh));
+      return fresh;
+    }
+    return saved;
+  } catch(e) {
+    return buildPresetState();
+  }
+}
+
+let state = loadState();
+let activeMonth = 5;
+let openPicker = null;
+
+// ============================================
+// INIT
+// ============================================
+function init() {
+  renderCategories();
+  renderMonthTabs();
+  renderAllMonths();
+  restoreState();
+  const today = new Date();
+  const start = (today.getMonth() === 5 || today.getMonth() === 6) ? today.getMonth() : 5;
+  switchMonth(state.activeMonth !== undefined ? state.activeMonth : start);
+  document.getElementById('clientName').value = state.clientName || 'Caio Galvão';
+  updateClientName();
+}
+
+// ============================================
+// CATEGORIES
+// ============================================
+function renderCategories() {
+  const bar = document.getElementById('categoriesBar');
+  CATEGORIES.forEach(cat => {
+    const pill = document.createElement('div');
+    pill.className = 'cat-pill';
+    pill.style.background = cat.bg;
+    pill.style.color = cat.color;
+    pill.style.borderColor = cat.bg;
+    pill.innerHTML = `<span class="cat-dot" style="background:${cat.color}"></span>${cat.label}`;
+    bar.appendChild(pill);
+  });
+}
+
+// ============================================
+// MONTH TABS
+// ============================================
+function renderMonthTabs() {
+  const tabs = document.getElementById('monthTabs');
+  MONTHS.forEach((m, i) => {
+    const tab = document.createElement('button');
+    tab.className = 'month-tab';
+    tab.textContent = m.short;
+    tab.onclick = () => switchMonth(i);
+    tab.id = `tab-${i}`;
+    if (i === 5 || i === 6) tab.classList.add('has-content');
+    tabs.appendChild(tab);
+  });
+}
+
+function switchMonth(idx) {
+  activeMonth = idx;
+  state.activeMonth = idx;
+  saveState();
+  document.querySelectorAll('.month-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.month-view').forEach((m, i) => m.classList.toggle('active', i === idx));
+}
+
+// ============================================
+// RENDER ALL MONTHS
+// ============================================
+function renderAllMonths() {
+  const wrap = document.getElementById('calendarWrap');
+  MONTHS.forEach((month, mIdx) => {
+    const view = document.createElement('div');
+    view.className = 'month-view';
+    view.id = `month-${mIdx}`;
+
+    // Print header
+    view.innerHTML = `
+      <div class="print-header">
+        <div style="font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:#EB5416;">CUCA.</div>
+        <div style="font-family:'Sora',sans-serif;font-size:0.7rem;color:#A25C45;letter-spacing:0.1em;text-transform:uppercase;">Calendário de Conteúdo 2026</div>
+        <div id="print-client-${mIdx}" style="font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:#1A1210;">Caio Galvão</div>
+      </div>`;
+
+    // Banner estratégico
+    if (mIdx === 5) {
+      view.innerHTML += `<div class="estrategia-banner">
+        <div class="estrategia-icon">🎪</div>
+        <div>
+          <div class="estrategia-label">Foco do Mês</div>
+          <div class="estrategia-titulo">Junho — Lançamento com São João</div>
+          <div class="estrategia-desc">2 Reels sazonais para viralizar. Tom aliado: "deixa o povo curtir o arraiá com estratégia". Gravar no fim de semana 12–14/jun, soltar 18/jun e 24/jun. Objetivo: primeiras impressões e alcance orgânico.</div>
+        </div>
+      </div>`;
+    }
+    if (mIdx === 6) {
+      view.innerHTML += `<div class="estrategia-banner">
+        <div class="estrategia-icon">🚀</div>
+        <div>
+          <div class="estrategia-label">Foco do Mês</div>
+          <div class="estrategia-titulo">Julho — Lançamento de Verdade</div>
+          <div class="estrategia-desc">Apresentação completa + autoridade + engajamento real. Mix: 3 Reels + 3 Carrosséis + 3 Stories + datas comemorativas. Post de conversão no final do mês (25/jul). Objetivo: formar base sólida de seguidores-pacientes em Salvador. ⚠️ Dia do Nutricionista = 31/ago — planejar post especial em agosto.</div>
+        </div>
+      </div>`;
+    }
+
+    // Month header
+    const header = document.createElement('div');
+    header.className = 'month-header';
+    header.innerHTML = `
+      <div class="month-title">${month.name} <span>2026</span></div>
+      <div class="month-note-wrap">
+        <span class="month-note-label">Nota estratégica do mês</span>
+        <input class="month-note" id="note-${mIdx}" type="text"
+               placeholder="Adicione um direcionamento estratégico para este mês..."
+               oninput="saveNote(${mIdx}, this.value)" />
+      </div>`;
+    view.appendChild(header);
+
+    // Grid
+    const grid = document.createElement('div');
+    grid.className = 'cal-grid';
+    WEEKDAYS.forEach(wd => {
+      const el = document.createElement('div');
+      el.className = 'cal-weekday';
+      el.textContent = wd;
+      grid.appendChild(el);
+    });
+    for (let e = 0; e < month.startDay; e++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day empty';
+      grid.appendChild(el);
+    }
+    for (let d = 1; d <= month.days; d++) {
+      const dow = (month.startDay + d - 1) % 7;
+      const today = new Date();
+      const isToday = today.getFullYear() === 2026 && today.getMonth() === mIdx && today.getDate() === d;
+      const cell = document.createElement('div');
+      cell.className = `cal-day${isToday ? ' today' : ''}`;
+      cell.id = `day-${mIdx}-${d}`;
+      cell.innerHTML = `
+        <span class="day-num${dow === 0 ? ' sunday' : ''}">${d}</span>
+        <div class="day-tags" id="tags-${mIdx}-${d}"></div>
+        <textarea class="day-content" id="content-${mIdx}-${d}"
+                  placeholder="conteúdo..." rows="2"
+                  oninput="saveContent(${mIdx}, ${d}, this.value)"></textarea>
+        <div class="day-add-cat" onclick="togglePicker(event, ${mIdx}, ${d})" title="Adicionar categoria">+</div>
+        <div class="cat-picker" id="picker-${mIdx}-${d}">
+          ${CATEGORIES.map(cat => `
+            <div class="cat-picker-item" onclick="addCategory(${mIdx}, ${d}, '${cat.id}')">
+              <span class="cat-dot" style="background:${cat.color}"></span>${cat.label}
+            </div>`).join('')}
+        </div>`;
+      grid.appendChild(cell);
+    }
+    const rem = (month.startDay + month.days) % 7;
+    if (rem !== 0) for (let r = 0; r < 7 - rem; r++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day empty';
+      grid.appendChild(el);
+    }
+    view.appendChild(grid);
+
+    // Posts planejados (jun e jul)
+    if (mIdx === 5 || mIdx === 6 || mIdx === 7) {
+      const postsEl = document.createElement('div');
+      postsEl.innerHTML = buildPostsSection(mIdx);
+      view.appendChild(postsEl);
+    }
+
+    // Refs + Dirs
+    const refSection = document.createElement('div');
+    refSection.innerHTML = buildRefSection(mIdx);
+    view.appendChild(refSection);
+
+    // Semanas
+    const wk = document.createElement('div');
+    wk.className = 'week-strategy';
+    wk.innerHTML = `
+      <div class="week-strategy-header"><span class="week-strategy-title">Direcionamento por Semana</span></div>
+      <div class="week-rows">
+        ${[1,2,3,4].map(w => `
+          <div class="week-row">
+            <div class="week-label">Semana ${w}</div>
+            <input class="week-input" id="week-${mIdx}-${w}" placeholder="foco desta semana..."
+                   oninput="saveWeek(${mIdx}, ${w}, this.value)" />
+          </div>`).join('')}
+      </div>`;
+    view.appendChild(wk);
+
+    // Legend
+    const leg = document.createElement('div');
+    leg.className = 'cat-legend';
+    CATEGORIES.forEach(cat => {
+      leg.innerHTML += `<div style="display:flex;align-items:center;gap:0.4rem;font-family:'Sora',sans-serif;font-size:0.62rem;font-weight:600;color:${cat.color};">
+        <span style="width:8px;height:8px;background:${cat.color};border-radius:50%;flex-shrink:0;"></span>${cat.label}</div>`;
+    });
+    view.appendChild(leg);
+
+    wrap.appendChild(view);
+  });
+}
+
+// ============================================
+// POSTS PLANEJADOS
+// ============================================
+function buildPostsSection(mIdx) {
+  const junioPosts = [
+    {
+      data: '18 Jun', catId: 'viral', catLabel: 'Trends / Viral', catBg: '#E8F8F5', catColor: '#16A085',
+      titulo: '🎬 Reel 1 — Guia de sobrevivência calórica do São João',
+      desc: 'Caio passeia pelo mercado pré-arraial e faz um guia rápido: o que pode comer tranquilo, o que é mais calórico, tom de aliado total.',
+      roteiro: `[Gancho — câmera na mão, andando no mercado]
+"Tô aqui no mercado pré-arraial e vou te mostrar o que pode comer sem culpa e o que vai explodir a sua dieta"
+
+→ Paçoca: "leve, mas engana — 3 unidades já são ~180kcal"
+→ Canjica com leite de coco: "a vilã silenciosa — fácil 400kcal numa porção"
+→ Milho cozido: "esse aqui é o mocinho — ~90kcal, fibra, saciante"
+→ Amendoim torrado: "gordura boa, mas a mão pesada cobra o preço"
+→ Pé de moleque: "o mais denso de todos — cuidado com o tamanho"
+
+[Fecha]
+"Vai curtir, aproveita — só sabe o que tá comendo"
+CTA: "Salva esse vídeo pro arraiá" 🎪`
+    },
+    {
+      data: '24 Jun', catId: 'viral', catLabel: 'Trends / Viral', catBg: '#E8F8F5', catColor: '#16A085',
+      titulo: '🎬 Reel 2 — Como montar o dia pra chegar no arraiá sem culpa',
+      desc: 'Estratégia calórica pra quem vai comer e beber à noite. Tom de aliado, nunca restritivo.',
+      roteiro: `[Gancho — direto pra câmera, confiante]
+"É véspera de São João e você vai comer aquele prato hoje à noite. Tô aqui pra te ajudar a chegar preparado."
+
+→ Café da manhã proteico: "satura antes, come menos depois"
+→ Almoço leve mas completo: "não pula refeição, só ajusta"
+→ Hidratação ao longo do dia: "álcool desidrata, começa na frente"
+→ Lancinho pré-saída: "evita o ataque à mesa ao chegar"
+
+[Fecha]
+"Aproveita o São João com estratégia. Felicidades!"
+CTA: "Salva e manda pra aquele amigo que vai exagerar hoje"`
+    },
+  ];
+
+  const julhoPosts = [
+    {
+      data: '03 Jul', catId: 'apresentacao', catLabel: 'Apresentação / Marca', catBg: '#EDE8E5', catColor: '#1A1210',
+      titulo: '🖼️ Carrossel 1 — Conheça o seu nutri',
+      desc: 'Apresentação completa do Caio. Inspiração direta: @larissamillard.nutri.',
+      roteiro: `Slide 1: Foto do Caio + "Conheça o seu nutri" (grande, impactante)
+Slide 2: Quem é — "Sou Caio Galvão, 24 anos, nutricionista clínico e esportivo em Salvador/BA"
+Slide 3: O que move — disciplina, militarismo, resultados reais, sem desculpas
+Slide 4: "A nutrição que eu acredito" — frases-âncora dos pilares do método
+Slide 5: O que o acompanhamento oferece — proximidade, método, autonomia
+Slide 6: CTA — "Vem marcar sua consulta" + link/WhatsApp`
+    },
+    {
+      data: '08 Jul', catId: 'viral', catLabel: 'Trends / Viral', catBg: '#E8F8F5', catColor: '#16A085',
+      titulo: '🎬 Reel 3 — Rotina matinal do Caio',
+      desc: 'Reel dinâmico, curto (15–30s). Bastidor real. Humaniza e gera identificação com a geração Z.',
+      roteiro: `Trend da semana adaptado à rotina matinal.
+Mostrar: café da manhã, treino, preparação pra atender.
+Tom: real, sem filtro excessivo.
+Legenda: algo simples e direto sobre consistência.`
+    },
+    {
+      data: '14 Jul', catId: 'autoridade', catLabel: 'Autoridade / Método', catBg: '#F0EEFF', catColor: '#7B68EE',
+      titulo: '🖼️ Carrossel 2 — A nutrição que eu acredito',
+      desc: 'Posicionamento e valores do método. Inspiração: @marimoreno.nutri.',
+      roteiro: `Slide 1: Foto do Caio (consultório ou treino) + "A nutrição que eu acredito ›"
+Slides 2–5: Frases flutuando ao redor da foto:
+  "resultado vem de constância, não de motivação"
+  "a dieta certa é a que funciona pra sua realidade"
+  "nutrição sem terrorismo"
+  "você não precisa abrir mão de tudo pra ter resultado"
+Slide final: CTA suave — "Esse é o meu método. Vem trabalhar comigo."`
+    },
+    {
+      data: '17 Jul', catId: 'educativo', catLabel: 'Educação Nutricional', catBg: '#EBF3FC', catColor: '#4A90D9',
+      titulo: '🎬 Reel 4 — O maior mito da nutrição esportiva',
+      desc: 'Reel educativo falado. Autoridade + engajamento. Tema a escolher entre os mitos populares.',
+      roteiro: `Sugestão 1: "Comer de 3 em 3 horas acelera o metabolismo — MITO"
+Sugestão 2: "Você PRECISA de whey depois do treino — DEPENDE"
+
+Gancho forte nos primeiros 2 segundos.
+Resposta direta, baseada em evidência, sem terrorismo.
+Fecha: "Quer entender o que funciona de verdade? Me chama."`
+    },
+    {
+      data: '22 Jul', catId: 'educativo', catLabel: 'Educação Nutricional', catBg: '#EBF3FC', catColor: '#4A90D9',
+      titulo: '🖼️ Carrossel 3 — 3 erros que travam seu resultado na academia',
+      desc: 'Educativo + autoridade. Formato: foto de atleta em movimento + texto sobreposto (insp. carrossel de hidratação).',
+      roteiro: `Slide 1: Foto do Caio (treino/movimento) + "3 erros que travam seu resultado" →
+Slides 2–4: Um erro por slide, curto e direto:
+  Erro 1: Comer pouco demais achando que emagrece mais rápido
+  Erro 2: Não ter consistência na proteína ao longo do dia
+  Erro 3: Comparar seu processo com o dos outros
+Slide final: "Quer sair do ciclo de erro e acerto? Me chama."`
+    },
+    {
+      data: '25 Jul', catId: 'vendas', catLabel: 'CTA / Consulta', catBg: '#FDECEA', catColor: '#C0392B',
+      titulo: '🖼️ Carrossel CTA — Sua consulta começa aqui',
+      desc: 'Post de conversão direto. Fim do mês de lançamento — hora de converter seguidores em pacientes.',
+      roteiro: `Slide 1: Foto do Caio + "Pronto pra começar?"
+Slide 2: O que o acompanhamento inclui — método, proximidade, personalização
+Slide 3: Para quem é — quem quer resultado real, sem terrorismo alimentar
+Slide 4: CTA direto — "Agenda aberta. Me chama no WhatsApp e vamos conversar." ✅`
+    },
+    {
+      data: '29 Jul', catId: 'viral', catLabel: 'Trends / Viral', catBg: '#E8F8F5', catColor: '#16A085',
+      titulo: '🎬 Reel 5 — Trend da semana',
+      desc: 'Trend a identificar ~1 semana antes. Adaptar ao universo de nutrição esportiva ou rotina do Caio.',
+      roteiro: `Identificar trend em alta na semana de 21–27/jul.
+Adaptar ao universo de nutrição esportiva ou rotina real do Caio.
+Formato curto, dinâmico, áudio em alta.`
+    },
+    {
+      data: '21 Jul', catId: 'vendas', catLabel: 'CTA / Consulta', catBg: '#FDECEA', catColor: '#C0392B',
+      titulo: '🎬 Reel — Agora é foco',
+      desc: 'Pós-Copa e São João. Tom de recomeço sem culpa — aliado total. CTA natural no final.',
+      roteiro: `[direto pra câmera, tom leve e confiante]
+"Copa terminou. São João passou. E tá tudo bem."
+
+"Você comeu, bebeu, curtiu — era pra ser assim."
+
+"Mas agora julho chegou, e a gente tem seis meses até o final do ano."
+
+"Seis meses dá pra construir muita coisa. Dá pra criar hábito, dá pra ver resultado, dá pra chegar em dezembro diferente."
+
+"Não precisa apagar nada do que passou. Só precisa de uma direção."
+
+[pausa, olha na câmera]
+"Se você quer começar — ou recomeçar — me chama. Tô aqui."
+
+CTA legenda: "Marca aquele amigo que também precisa ouvir isso 👇"`
+    },
+    {
+      data: '31 Jul', catId: 'humanizacao', catLabel: 'Fora do Consultório', catBg: '#F5EDE9', catColor: '#A25C45',
+      titulo: '🖼️ Carrossel 4 — Bastidores da semana do Caio',
+      desc: 'Fora do Consultório real. Rotina, momentos do dia, vida fora do consultório. Geração Z conecta com autenticidade.',
+      roteiro: `Fotos reais da semana: treino, alimentação, momentos com amigos/família, bastidor do atendimento.
+Legenda humanizada — não precisa ser perfeito, precisa ser real.
+Tom: "por trás do nutricionista tem uma pessoa normal que também luta com consistência"`
+    },
+  ];
+
+  const agostoPosts = [
+    {
+      data:'04 Ago', catId:'viral', catLabel:'Trends / Viral', catBg:'#E8F8F5', catColor:'#16A085',
+      titulo:'🎬 Reel 6 — O que ninguém te conta sobre emagrecer',
+      desc:'Desmistificação direta. Gancho forte nos primeiros 2 segundos. Alto potencial de salvamento e compartilhamento.',
+      roteiro:`Gancho: "Todo mundo fala sobre emagrecer. Quase ninguém fala sobre isso..."
+→ Déficit calórico não precisa ser sofrimento
+→ Consistência bate intensidade sempre
+→ Sono e estresse impactam mais do que você imagina
+→ A dieta perfeita é a que você consegue manter
+Fecha: "Quer entender o que realmente funciona? Me chama."`
+    },
+    {
+      data:'07 Ago', catId:'autoridade', catLabel:'Autoridade / Método', catBg:'#F0EEFF', catColor:'#7B68EE',
+      titulo:'🖼️ Carrossel 5 — O que muda de verdade quando você tem acompanhamento',
+      desc:'Antes/depois de COMPORTAMENTO — não de corpo. Autoridade + conversão. Sem métricas, foco em qualidade de vida.',
+      roteiro:`Slide 1: "O que muda quando você tem acompanhamento nutricional?"
+Slides 2-5:
+  Antes: come por ansiedade | Depois: come com consciência
+  Antes: começa e para | Depois: consistência real
+  Antes: medo de sair da dieta | Depois: sabe se reorganizar
+  Antes: foco no peso | Depois: foco em hábito
+Slide final: "Essa transformação começa com uma consulta. Me chama."`
+    },
+    {
+      data:'13 Ago', catId:'educativo', catLabel:'Educação Nutricional', catBg:'#EBF3FC', catColor:'#4A90D9',
+      titulo:'🎬 Reel 7 — Nutrição pra quem treina mas não é atleta',
+      desc:'Fala com quem malha 3-4x por semana. Educativo + autoridade.',
+      roteiro:`Gancho: "Se você treina 3-4x por semana mas não é atleta, esse vídeo é pra você"
+→ Proteína: quanto você realmente precisa
+→ Horário de treino não muda tanto quanto consistência
+→ O que comer antes e depois — simplificado
+→ Suplemento não substitui alimentação
+Fecha: "Dúvidas? Me chama no direct."`
+    },
+    {
+      data:'17 Ago', catId:'educativo', catLabel:'Educação Nutricional', catBg:'#EBF3FC', catColor:'#4A90D9',
+      titulo:'🖼️ Carrossel 6 — Saúde não é só estética 🏥 Dia Nacional da Saúde',
+      desc:'Posicionamento de valores. O que é ser saudável de verdade. Alinha com o tom do perfil.',
+      roteiro:`Slide 1: "Hoje é Dia Nacional da Saúde. E saúde vai muito além do espelho."
+Slides 2-5:
+  Energia pra viver o dia inteiro
+  Uma relação mais leve com a comida
+  Sono de qualidade
+  Disposição pra estar presente com quem você ama
+Slide final: "É isso que eu busco construir com meus pacientes. Quer fazer parte?"`
+    },
+    {
+      data:'22 Ago', catId:'viral', catLabel:'Trends / Viral', catBg:'#E8F8F5', catColor:'#16A085',
+      titulo:'🎬 Reel 8 — Comida brasileira e dieta: você não precisa abrir mão 🎭 Dia do Folclore',
+      desc:'Acarajé, tapioca, cuscuz, vatapá — muito forte pra Salvador. Alto potencial viral.',
+      roteiro:`Gancho: "Hoje é Dia do Folclore e eu preciso defender a comida brasileira"
+→ Tapioca: vilã ou aliada? (depende do recheio e contexto)
+→ Acarajé: calórico, mas tem seu lugar
+→ Cuscuz: carboidrato com fibra, melhor do que parece
+→ Vatapá: proteína + gordura boa do dendê
+Fecha: "Identidade cultural também é saúde. Não precisa abrir mão de nada — só entender o contexto."`
+    },
+    {
+      data:'26 Ago', catId:'educativo', catLabel:'Educação Nutricional', catBg:'#EBF3FC', catColor:'#4A90D9',
+      titulo:'🖼️ Carrossel 7 — Por que você começa e não consegue manter?',
+      desc:'Ciclo início-abandono. Comportamento alimentar. Conecta com especialização em compulsão do Caio.',
+      roteiro:`Slide 1: "Por que você começa na segunda e para na quarta?"
+Slides 2-5:
+  A dieta é restritiva demais pra sua realidade
+  Você não tem estratégia — só força de vontade
+  Um deslize vira motivo pra abandonar tudo
+  Falta de acompanhamento pra ajustar o caminho
+Slide final: "Sair desse ciclo é possível. Começa com uma conversa. Me chama."`
+    },
+    {
+      data:'31 Ago', catId:'apresentacao', catLabel:'Apresentação / Marca', catBg:'#EDE8E5', catColor:'#1A1210',
+      titulo:'🏅 POST ESPECIAL — Dia do Nutricionista',
+      desc:'Post mais importante do mês. Melhor foto/vídeo. História pessoal + valores + método + CTA forte.',
+      roteiro:`Reel ou Carrossel (3-4 slides):
+"Hoje é dia do nutricionista. Escolhi essa profissão porque acredito que [X]"
+→ Por que escolheu nutrição
+→ O que guia o método
+→ O que quer construir com os pacientes
+CTA: "Agenda aberta — me chama no WhatsApp." ✅
+📌 USAR MELHOR FOTO/VÍDEO DO MÊS`
+    },
+  ];
+  const posts = mIdx === 5 ? junioPosts : mIdx === 6 ? julhoPosts : mIdx === 7 ? agostoPosts : null;
+  const titulo = mIdx === 5 ? '📋 Conteúdos Planejados — Junho' : mIdx === 6 ? '📋 Conteúdos Planejados — Julho' : '📋 Conteúdos Planejados — Agosto';
+  const count = posts.length;
+
+  return `<div class="posts-planejados">
+    <div class="posts-header">
+      <span class="posts-header-title">${titulo}</span>
+      <span class="posts-header-badge">${count} posts</span>
+    </div>
+    <div class="posts-lista">
+      ${posts.map(p => `
+        <div class="post-item" style="border-left-color:${p.catColor}">
+          <div class="post-item-header">
+            <span class="post-item-data">${p.data}</span>
+            <span class="post-item-cat" style="background:${p.catBg};color:${p.catColor}">${p.catLabel}</span>
+          </div>
+          <div class="post-item-titulo">${p.titulo}</div>
+          <div class="post-item-desc">${p.desc}</div>
+          <div class="post-item-roteiro">
+            <div class="post-item-roteiro-label">Roteiro / Estrutura</div>
+            <div class="post-item-roteiro-text">${p.roteiro}</div>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// ============================================
+// REF SECTION
+// ============================================
+function buildRefSection(mIdx) {
+  return `
+    <div class="ref-block">
+      <div class="ref-block-header"><span class="ref-block-title">Referências de Conteúdo</span></div>
+      <div class="ref-block-body">
+        <div class="ref-col-labels">
+          <span class="ref-col-label">Perfil / @conta</span>
+          <span class="ref-col-label">O que referencia</span>
+          <span></span>
+        </div>
+        <div id="ref-rows-${mIdx}"></div>
+        <button class="ref-add-btn" onclick="addRefRow(${mIdx})">+ adicionar referência</button>
+      </div>
+    </div>
+    <div class="ref-block">
+      <div class="ref-block-header"><span class="ref-block-title">Direcionamento de Conteúdo</span></div>
+      <div class="ref-block-body">
+        <div id="dir-rows-${mIdx}"></div>
+        <button class="ref-add-btn" onclick="addDirRow(${mIdx})">+ adicionar direcionamento</button>
+      </div>
+    </div>`;
+}
+
+// ============================================
+// CATEGORY PICKER
+// ============================================
+function togglePicker(e, mIdx, d) {
+  e.stopPropagation();
+  const picker = document.getElementById(`picker-${mIdx}-${d}`);
+  const isOpen = picker.classList.contains('open');
+  document.querySelectorAll('.cat-picker.open').forEach(p => p.classList.remove('open'));
+  if (!isOpen) { picker.classList.add('open'); openPicker = `picker-${mIdx}-${d}`; }
+  else openPicker = null;
+}
+document.addEventListener('click', () => {
+  if (openPicker) { const p = document.getElementById(openPicker); if (p) p.classList.remove('open'); openPicker = null; }
+});
+function addCategory(mIdx, d, catId) {
+  const key = `${mIdx}-${d}`;
+  if (!state.categories) state.categories = {};
+  if (!state.categories[key]) state.categories[key] = [];
+  if (!state.categories[key].includes(catId)) { state.categories[key].push(catId); renderTags(mIdx, d); saveState(); }
+  const picker = document.getElementById(`picker-${mIdx}-${d}`);
+  if (picker) picker.classList.remove('open');
+}
+function removeCategory(mIdx, d, catId) {
+  const key = `${mIdx}-${d}`;
+  if (state.categories && state.categories[key]) {
+    state.categories[key] = state.categories[key].filter(c => c !== catId);
+    renderTags(mIdx, d); saveState();
+  }
+}
+function renderTags(mIdx, d) {
+  const key = `${mIdx}-${d}`;
+  const container = document.getElementById(`tags-${mIdx}-${d}`);
+  if (!container) return;
+  const cats = (state.categories && state.categories[key]) || [];
+  container.innerHTML = cats.map(catId => {
+    const cat = CATEGORIES.find(c => c.id === catId);
+    if (!cat) return '';
+    return `<div class="day-tag" style="background:${cat.bg};color:${cat.color};"
+                 onclick="removeCategory(${mIdx}, ${d}, '${catId}')"
+                 title="Clique para remover">${cat.label}</div>`;
+  }).join('');
+}
+
+// ============================================
+// SAVE / LOAD
+// ============================================
+function saveContent(mIdx, d, value) {
+  if (!state.content) state.content = {};
+  state.content[`${mIdx}-${d}`] = value;
+  saveState();
+}
+function saveNote(mIdx, value) {
+  if (!state.notes) state.notes = {};
+  state.notes[mIdx] = value;
+  saveState();
+}
+function saveWeek(mIdx, week, value) {
+  if (!state.weeks) state.weeks = {};
+  state.weeks[`${mIdx}-${week}`] = value;
+  saveState();
+}
+function saveState() {
+  try { localStorage.setItem('caio-cal-2026', JSON.stringify(state)); } catch(e) {}
+}
+function restoreState() {
+  if (state.content) Object.entries(state.content).forEach(([key, val]) => {
+    const el = document.getElementById(`content-${key}`); if (el) el.value = val;
+  });
+  if (state.categories) Object.keys(state.categories).forEach(key => {
+    const parts = key.split('-'); renderTags(parseInt(parts[0]), parseInt(parts[1]));
+  });
+  if (state.notes) Object.entries(state.notes).forEach(([mIdx, val]) => {
+    const el = document.getElementById(`note-${mIdx}`); if (el) el.value = val;
+  });
+  MONTHS.forEach((_, mIdx) => {
+    renderRefRows(mIdx); renderDirRows(mIdx);
+    [1,2,3,4].forEach(w => {
+      const el = document.getElementById(`week-${mIdx}-${w}`);
+      if (el && state.weeks && state.weeks[`${mIdx}-${w}`]) el.value = state.weeks[`${mIdx}-${w}`];
+    });
+  });
+}
+function updateClientName() {
+  const name = document.getElementById('clientName').value;
+  state.clientName = name; saveState();
+  document.querySelectorAll('[id^="print-client-"]').forEach(el => el.textContent = name);
+}
+function clearAll() {
+  if (confirm('Limpar todo o calendário? Esta ação não pode ser desfeita.')) {
+    state = { clientName: 'Caio Galvão' };
+    localStorage.removeItem('caio-cal-2026');
+    document.querySelectorAll('.day-content').forEach(el => el.value = '');
+    document.querySelectorAll('.month-note').forEach(el => el.value = '');
+    document.querySelectorAll('.day-tags').forEach(el => el.innerHTML = '');
+    document.querySelectorAll('.week-input').forEach(el => el.value = '');
+    MONTHS.forEach((_, mIdx) => { renderRefRows(mIdx); renderDirRows(mIdx); });
+  }
+}
+
+// ============================================
+// REFS & DIRS
+// ============================================
+function addRefRow(mIdx) {
+  if (!state.refs) state.refs = {};
+  if (!state.refs[mIdx]) state.refs[mIdx] = [];
+  state.refs[mIdx].push({ profile: '', about: '' });
+  renderRefRows(mIdx); saveState();
+}
+function saveRef(mIdx, idx, field, value) {
+  if (!state.refs) state.refs = {};
+  if (!state.refs[mIdx]) state.refs[mIdx] = [];
+  if (!state.refs[mIdx][idx]) state.refs[mIdx][idx] = { profile: '', about: '' };
+  state.refs[mIdx][idx][field] = value; saveState();
+}
+function removeRefRow(mIdx, idx) {
+  if (state.refs && state.refs[mIdx]) {
+    state.refs[mIdx].splice(idx, 1); renderRefRows(mIdx); saveState();
+  }
+}
+function renderRefRows(mIdx) {
+  const container = document.getElementById(`ref-rows-${mIdx}`);
+  if (!container) return;
+  const rows = (state.refs && state.refs[mIdx]) || [];
+  if (rows.length === 0) {
+    container.innerHTML = `<div class="ref-row">
+      <input class="ref-input" placeholder="@perfil" oninput="saveRef(${mIdx}, 0, 'profile', this.value)" />
+      <input class="ref-input" placeholder="referência para qual conteúdo" oninput="saveRef(${mIdx}, 0, 'about', this.value)" />
+      <span></span></div>`; return;
+  }
+  container.innerHTML = rows.map((row, idx) => `
+    <div class="ref-row">
+      <input class="ref-input" placeholder="@perfil" value="${(row.profile||'').replace(/"/g,'&quot;')}"
+             oninput="saveRef(${mIdx}, ${idx}, 'profile', this.value)" />
+      <input class="ref-input" placeholder="referência para qual conteúdo" value="${(row.about||'').replace(/"/g,'&quot;')}"
+             oninput="saveRef(${mIdx}, ${idx}, 'about', this.value)" />
+      <button class="ref-remove" onclick="removeRefRow(${mIdx}, ${idx})">✕</button>
+    </div>`).join('');
+}
+function addDirRow(mIdx) {
+  if (!state.dirs) state.dirs = {};
+  if (!state.dirs[mIdx]) state.dirs[mIdx] = [];
+  state.dirs[mIdx].push(''); renderDirRows(mIdx); saveState();
+}
+function saveDir(mIdx, idx, value) {
+  if (!state.dirs) state.dirs = {};
+  if (!state.dirs[mIdx]) state.dirs[mIdx] = [];
+  state.dirs[mIdx][idx] = value; saveState();
+}
+function removeDirRow(mIdx, idx) {
+  if (state.dirs && state.dirs[mIdx]) {
+    state.dirs[mIdx].splice(idx, 1); renderDirRows(mIdx); saveState();
+  }
+}
+function renderDirRows(mIdx) {
+  const container = document.getElementById(`dir-rows-${mIdx}`);
+  if (!container) return;
+  const rows = (state.dirs && state.dirs[mIdx]) || [];
+  if (rows.length === 0) {
+    container.innerHTML = `<div class="dir-row">
+      <input class="dir-input" placeholder="ex: semana 1 foca em autoridade..."
+             oninput="saveDir(${mIdx}, 0, this.value)" />
+      <span></span></div>`; return;
+  }
+  container.innerHTML = rows.map((row, idx) => `
+    <div class="dir-row">
+      <input class="dir-input" value="${(row||'').replace(/"/g,'&quot;')}"
+             placeholder="direcionamento de conteúdo..."
+             oninput="saveDir(${mIdx}, ${idx}, this.value)" />
+      <button class="ref-remove" onclick="removeDirRow(${mIdx}, ${idx})">✕</button>
+    </div>`).join('');
+}
+
+// ============================================
+// START
+// ============================================
+init();
+</script>
+</body>
+</html>

@@ -36,8 +36,8 @@ export const pt: SiteContent = {
     eyebrow: 'O estúdio',
     title: 'Poucos projetos. Nenhum entregue a meio.',
     body: [
-      'Há um género de agência que cresce a dizer que sim a tudo, reparte o trabalho por gente que nunca falou com o cliente e entrega dentro do prazo qualquer coisa que parece certa. Resulta durante algum tempo. Depois a marca fica igual à do concorrente do lado e ninguém sabe explicar porquê.',
-      'A CUCA foi pensada ao contrário. Pegamos em poucos projetos ao mesmo tempo porque uma marca a sério obriga a convivência: perceber por onde entra o dinheiro, onde é que a venda encrava, o que é que o cliente diz quando o comercial já não está a ouvir. Isso não cabe num briefing de uma página.',
+      'A CUCA trabalha com poucos projetos de cada vez. Cada um recebe atenção real, do briefing à entrega.',
+      'Uma marca a sério obriga a convivência: perceber por onde entra o dinheiro, onde é que a venda encrava, o que é que o cliente diz quando o comercial já não está a ouvir. Isso não cabe num briefing de uma página.',
       'O resultado é menos apresentação bonita e mais decisão tomada com informação na mão. É mais lento ao princípio e bastante mais firme depois.',
     ],
     pillars: [

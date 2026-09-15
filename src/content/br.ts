@@ -31,8 +31,8 @@ export const br: SiteContent = {
     eyebrow: 'O estúdio',
     title: 'Poucos projetos. Nenhum no piloto automático.',
     body: [
-      'Existe um tipo de agência que cresce aceitando tudo, distribui o trabalho entre gente que nunca falou com o cliente e entrega no prazo alguma coisa que parece certa. Funciona por um tempo. Depois a marca fica igual à do concorrente e ninguém sabe explicar por quê.',
-      'A CUCA foi montada no sentido contrário. Assumimos poucos projetos ao mesmo tempo porque marca de verdade exige convivência: entender como o dinheiro entra, onde a venda trava, o que o cliente fala quando o vendedor não está ouvindo. Isso não cabe num briefing de uma página.',
+      'A CUCA trabalha com poucos projetos por vez. Cada um recebe atenção real, do briefing à entrega.',
+      'Marca de verdade exige convivência: entender como o dinheiro entra, onde a venda trava, o que o cliente fala quando o vendedor não está ouvindo. Isso não cabe num briefing de uma página.',
       'O resultado é menos apresentação bonita e mais decisão tomada com informação na mão. É mais lento no começo e bem mais firme depois.',
     ],
     pillars: [

@@ -18,16 +18,16 @@ export const pt: SiteContent = {
   nav: [
     { label: 'Estúdio', href: '#estudio' },
     { label: 'O que fazemos', href: '#servicos' },
-    { label: 'Candidatura', href: '#candidatura' },
+    { label: 'Contacto', href: '#contacto' },
   ],
-  navCta: 'Apresentar um projeto',
+  navCta: 'Falar connosco',
 
   hero: {
     eyebrow: 'Portugal · Brasil',
     line1: 'Marca não é',
     line2: 'maquilhagem.',
     lead: 'A CUCA constrói marcas que aguentam o preço que pedem, resistem à comparação e não dependem de quem está a publicar naquele mês. Aceitamos poucos clientes de cada vez, e isso é de propósito.',
-    cta: 'Apresentar um projeto',
+    cta: 'Falar connosco',
     ctaSecondary: 'Como trabalhamos',
     marks: ['Branding', 'Conteúdo', 'Estratégia digital'],
   },
@@ -98,9 +98,9 @@ export const pt: SiteContent = {
   },
 
   form: {
-    eyebrow: 'Candidatura',
-    title: 'Antes da conversa, quatro perguntas.',
-    lead: 'Isto não é um "fale connosco". É o que precisamos de saber para lhe responder com alguma coisa útil em vez de uma apresentação igual para todos. Leva dois minutos e respondemos em dois dias úteis.',
+    eyebrow: 'Contacto',
+    title: 'Conte-nos do seu projeto.',
+    lead: 'Quanto mais soubermos antes da primeira conversa, mais proveitosa ela fica. Os campos abaixo levam dois minutos e evitam que a nossa resposta seja uma apresentação igual para todos.',
     fields: [
       { name: 'nome', label: 'O seu nome', kind: 'text', required: true, placeholder: 'Como prefere que lhe chamem' },
       { name: 'email', label: 'E-mail', kind: 'email', required: true, placeholder: 'voce@empresa.pt' },
@@ -140,14 +140,13 @@ export const pt: SiteContent = {
         label: 'Qual é o principal desafio neste momento',
         kind: 'textarea',
         required: true,
-        placeholder: 'Seja concreto. "Vender mais" não nos diz nada. "Perdemos para um concorrente mais caro sempre que chega à proposta" diz-nos muito.',
-        hint: 'Quanto mais concreto for, melhor é a resposta que recebe.',
+        placeholder: 'Por exemplo: perdemos para um concorrente mais caro sempre que chega à proposta.',
+        hint: 'Escreva à sua maneira. O detalhe ajuda, mas não precisa de se alongar.',
       },
       {
         name: 'investimento',
-        label: 'Verba prevista para o projeto',
+        label: 'Verba prevista para o projeto (opcional)',
         kind: 'select',
-        required: true,
         options: [
           'Até 5 mil €',
           '5 mil € a 15 mil €',
@@ -157,12 +156,13 @@ export const pt: SiteContent = {
         ],
       },
     ],
-    submit: 'Enviar candidatura',
+    submit: 'Enviar pedido',
     sending: 'A enviar',
-    note: 'Os seus dados ficam connosco e servem apenas para responder a esta candidatura.',
+    note: 'Envie o pedido e entraremos em contacto.',
+    privacy: 'Os seus dados ficam connosco e servem apenas para responder a este pedido.',
     success: {
       title: 'Recebido.',
-      text: 'Vamos ler com atenção e responder em dois dias úteis. Se houver encaixe, a conversa seguinte já entra mesmo no assunto.',
+      text: 'O seu pedido chegou até nós. Entraremos em contacto pelo e-mail que deixou.',
     },
     error: 'Alguma coisa falhou no envio. Tente outra vez ou escreva diretamente para o e-mail do rodapé.',
   },

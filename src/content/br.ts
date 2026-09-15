@@ -13,16 +13,16 @@ export const br: SiteContent = {
   nav: [
     { label: 'Estúdio', href: '#estudio' },
     { label: 'O que fazemos', href: '#servicos' },
-    { label: 'Aplicar', href: '#aplicar' },
+    { label: 'Contato', href: '#contato' },
   ],
-  navCta: 'Aplicar para um projeto',
+  navCta: 'Falar com a CUCA',
 
   hero: {
     eyebrow: 'Brasil · Portugal',
     line1: 'Marca não é',
     line2: 'decoração.',
     lead: 'A CUCA constrói marcas que sustentam preço, aguentam comparação e não dependem de quem está postando naquele mês. Trabalhamos com poucos clientes por vez, e é de propósito.',
-    cta: 'Aplicar para um projeto',
+    cta: 'Falar com a CUCA',
     ctaSecondary: 'Como trabalhamos',
     marks: ['Branding', 'Conteúdo', 'Estratégia digital'],
   },
@@ -93,9 +93,9 @@ export const br: SiteContent = {
   },
 
   form: {
-    eyebrow: 'Aplicar',
-    title: 'Antes da conversa, quatro perguntas.',
-    lead: 'Não é um "fale conosco". É o que precisamos saber para responder com alguma coisa útil em vez de uma apresentação genérica. Leva dois minutos e a resposta vem em até dois dias úteis.',
+    eyebrow: 'Contato',
+    title: 'Conte sobre o seu projeto.',
+    lead: 'Quanto mais a gente souber antes da primeira conversa, mais útil ela fica. Os campos abaixo levam dois minutos e evitam que a nossa resposta seja uma apresentação genérica.',
     fields: [
       { name: 'nome', label: 'Seu nome', kind: 'text', required: true, placeholder: 'Como prefere ser chamado' },
       { name: 'email', label: 'E-mail', kind: 'email', required: true, placeholder: 'voce@empresa.com.br' },
@@ -135,14 +135,13 @@ export const br: SiteContent = {
         label: 'Qual é o principal desafio hoje',
         kind: 'textarea',
         required: true,
-        placeholder: 'Seja específico. "Aumentar vendas" não nos diz nada. "Perdemos para um concorrente mais caro toda vez que chega na proposta" nos diz muito.',
-        hint: 'Quanto mais concreto, melhor a resposta que você recebe.',
+        placeholder: 'Por exemplo: perdemos para um concorrente mais caro toda vez que chega na proposta.',
+        hint: 'Escreva do seu jeito. Detalhe ajuda, mas não precisa caprichar.',
       },
       {
         name: 'investimento',
-        label: 'Faixa de investimento previsto',
+        label: 'Faixa de investimento previsto (opcional)',
         kind: 'select',
-        required: true,
         options: [
           'Até R$ 15 mil',
           'R$ 15 mil a R$ 40 mil',
@@ -152,12 +151,13 @@ export const br: SiteContent = {
         ],
       },
     ],
-    submit: 'Enviar aplicação',
+    submit: 'Enviar solicitação',
     sending: 'Enviando',
-    note: 'Seus dados ficam com a gente e servem só para responder esta aplicação.',
+    note: 'Envie a solicitação e entraremos em contato.',
+    privacy: 'Seus dados ficam com a gente e servem só para responder esta solicitação.',
     success: {
       title: 'Recebido.',
-      text: 'Vamos ler com atenção e responder em até dois dias úteis. Se houver encaixe, a próxima conversa já entra no assunto de verdade.',
+      text: 'Sua solicitação chegou aqui. Vamos entrar em contato pelo e-mail que você deixou.',
     },
     error: 'Alguma coisa travou no envio. Tente de novo ou escreva direto para o e-mail do rodapé.',
   },

@@ -150,7 +150,7 @@ export default function SiteShell({ content }: { content: SiteContent }) {
           </div>
         </section>
 
-        {/* ---------- candidatura ---------- */}
+        {/* ---------- contato ---------- */}
         <section id={applyId} className={styles.apply}>
           <div className={styles.shell}>
             <div className={styles.applyGrid}>

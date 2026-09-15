@@ -44,7 +44,10 @@ export type SiteContent = {
     fields: Field[];
     submit: string;
     sending: string;
+    /** linha ao lado do botão */
     note: string;
+    /** uso dos dados — LGPD no Brasil, RGPD em Portugal */
+    privacy: string;
     success: { title: string; text: string };
     error: string;
   };

@@ -152,7 +152,7 @@ export default function RegionGate() {
 
         <div className={styles.choice}>
           <p className={styles.claim}>
-            Poucos estúdios pensam marca como a CUCA pensa.
+            A CUCA não atende todo mundo. Atende quem entende por quê.
           </p>
 
           <div className={styles.pills}>

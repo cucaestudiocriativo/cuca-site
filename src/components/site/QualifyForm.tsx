@@ -140,7 +140,10 @@ export default function QualifyForm({ content }: { content: SiteContent }) {
         >
           {state === 'sending' ? form.sending : form.submit}
         </button>
-        <p className={styles.note}>{form.note}</p>
+        <div className={styles.noteBlock}>
+          <p className={styles.note}>{form.note}</p>
+          <p className={styles.privacy}>{form.privacy}</p>
+        </div>
       </div>
     </form>
   );

@@ -152,7 +152,7 @@ export default function RegionGate() {
 
         <div className={styles.choice}>
           <p className={styles.claim}>
-            A CUCA não atende todo mundo. Atende quem entende por quê.
+            Atendemos Brasil e Portugal. Escolha a sua região.
           </p>
 
           <div className={styles.pills}>

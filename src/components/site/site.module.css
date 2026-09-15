@@ -132,6 +132,18 @@
 
 .heroTitle span {
   display: block;
+  text-wrap: balance;
+}
+
+/* Manchete que é frase inteira, não slogan de duas palavras. Na escala de
+   display ela vira cinco linhas e empurra os botões para fora da tela.
+   Corpo menor, largura em ch e quebra equilibrada seguram quatro linhas
+   em qualquer largura. Quem tem manchete curta continua no tamanho cheio. */
+.heroTitleLong {
+  max-width: 17ch;
+  font-size: clamp(2.1rem, 5.6vw, 4.3rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
 }
 
 .heroTitle .accent {

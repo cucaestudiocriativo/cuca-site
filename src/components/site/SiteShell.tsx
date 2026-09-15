@@ -15,6 +15,8 @@ export default function SiteShell({ content }: { content: SiteContent }) {
   const { hero, about, services, form, footer, nav, navCta, region } = content;
   const [scrolled, setScrolled] = useState(false);
   const applyId = nav[nav.length - 1].href.replace('#', '');
+  /* manchete curta fica na escala de display; frase inteira precisa recuar */
+  const longHeadline = (hero.line1 + hero.line2).length > 36;
 
   /* a região visitada vira a preferida, mesmo quando se chega pelo link direto */
   useEffect(() => {
@@ -63,7 +65,11 @@ export default function SiteShell({ content }: { content: SiteContent }) {
           <div className={`${styles.shell} ${styles.heroInner}`}>
             <Reveal>
               <span className={styles.eyebrow}>{hero.eyebrow}</span>
-              <h1 className={styles.heroTitle}>
+              <h1
+                className={[styles.heroTitle, longHeadline ? styles.heroTitleLong : '']
+                  .filter(Boolean)
+                  .join(' ')}
+              >
                 <span>{hero.line1}</span>
                 <span className={styles.accent}>{hero.line2}</span>
               </h1>

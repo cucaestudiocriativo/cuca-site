@@ -19,8 +19,8 @@ export const br: SiteContent = {
 
   hero: {
     eyebrow: 'Brasil · Portugal',
-    line1: 'Marca não é',
-    line2: 'decoração.',
+    line1: 'A CUCA não atende todo mundo.',
+    line2: 'Atende quem entende por quê.',
     lead: 'A CUCA constrói marcas que sustentam preço, aguentam comparação e não dependem de quem está postando naquele mês. Trabalhamos com poucos clientes por vez, e é de propósito.',
     cta: 'Falar com a CUCA',
     ctaSecondary: 'Como trabalhamos',
@@ -33,12 +33,12 @@ export const br: SiteContent = {
     body: [
       'Existe um tipo de agência que cresce aceitando tudo, distribui o trabalho entre gente que nunca falou com o cliente e entrega no prazo alguma coisa que parece certa. Funciona por um tempo. Depois a marca fica igual à do concorrente e ninguém sabe explicar por quê.',
       'A CUCA foi montada no sentido contrário. Assumimos poucos projetos ao mesmo tempo porque marca de verdade exige convivência: entender como o dinheiro entra, onde a venda trava, o que o cliente fala quando o vendedor não está ouvindo. Isso não cabe num briefing de uma página.',
-      'Se o seu caso não for para nós, dizemos na primeira conversa. Vale mais para os dois lados do que uma proposta educada.',
+      'O resultado é menos apresentação bonita e mais decisão tomada com informação na mão. É mais lento no começo e bem mais firme depois.',
     ],
     pillars: [
       {
-        title: 'Seleção, não fila',
-        text: 'Avaliamos cada projeto antes de aceitar. Encaixe de escopo, de momento e de expectativa. Não é exclusividade de marketing, é limite de agenda.',
+        title: 'Poucos de cada vez',
+        text: 'Poucos projetos por vez, cada um com atenção real. A agenda é curta por escolha, e isso aparece no tempo que sobra para pensar cada entrega.',
       },
       {
         title: 'Quem pensa é quem executa',

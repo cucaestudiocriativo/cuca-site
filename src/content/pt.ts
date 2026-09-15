@@ -38,12 +38,12 @@ export const pt: SiteContent = {
     body: [
       'Há um género de agência que cresce a dizer que sim a tudo, reparte o trabalho por gente que nunca falou com o cliente e entrega dentro do prazo qualquer coisa que parece certa. Resulta durante algum tempo. Depois a marca fica igual à do concorrente do lado e ninguém sabe explicar porquê.',
       'A CUCA foi pensada ao contrário. Pegamos em poucos projetos ao mesmo tempo porque uma marca a sério obriga a convivência: perceber por onde entra o dinheiro, onde é que a venda encrava, o que é que o cliente diz quando o comercial já não está a ouvir. Isso não cabe num briefing de uma página.',
-      'Se o seu caso não for para nós, dizemo-lo logo na primeira conversa. Vale mais para os dois lados do que uma proposta simpática.',
+      'O resultado é menos apresentação bonita e mais decisão tomada com informação na mão. É mais lento ao princípio e bastante mais firme depois.',
     ],
     pillars: [
       {
-        title: 'Selecionamos, não fazemos fila',
-        text: 'Avaliamos cada projeto antes de aceitar: encaixe de âmbito, de momento e de expectativa. Não é exclusividade de brochura, é limite de agenda.',
+        title: 'Poucos de cada vez',
+        text: 'Poucos projetos de cada vez, cada um com atenção a sério. A agenda é curta por opção, e isso nota-se no tempo que sobra para pensar cada entrega.',
       },
       {
         title: 'Quem pensa é quem faz',

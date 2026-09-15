@@ -1,0 +1,171 @@
+import type { SiteContent } from './types';
+
+export const br: SiteContent = {
+  region: 'br',
+  lang: 'pt-BR',
+
+  meta: {
+    title: 'CUCA. — Estúdio de marca | Brasil',
+    description:
+      'Estúdio de branding e marketing digital. Poucos projetos por vez, cada um conduzido de perto. Atendimento no Brasil e em Portugal.',
+  },
+
+  nav: [
+    { label: 'Estúdio', href: '#estudio' },
+    { label: 'O que fazemos', href: '#servicos' },
+    { label: 'Aplicar', href: '#aplicar' },
+  ],
+  navCta: 'Aplicar para um projeto',
+
+  hero: {
+    eyebrow: 'Brasil · Portugal',
+    line1: 'Marca não é',
+    line2: 'decoração.',
+    lead: 'A CUCA constrói marcas que sustentam preço, aguentam comparação e não dependem de quem está postando naquele mês. Trabalhamos com poucos clientes por vez, e é de propósito.',
+    cta: 'Aplicar para um projeto',
+    ctaSecondary: 'Como trabalhamos',
+    marks: ['Branding', 'Conteúdo', 'Estratégia digital'],
+  },
+
+  about: {
+    eyebrow: 'O estúdio',
+    title: 'Poucos projetos. Nenhum no piloto automático.',
+    body: [
+      'Existe um tipo de agência que cresce aceitando tudo, distribui o trabalho entre gente que nunca falou com o cliente e entrega no prazo alguma coisa que parece certa. Funciona por um tempo. Depois a marca fica igual à do concorrente e ninguém sabe explicar por quê.',
+      'A CUCA foi montada no sentido contrário. Assumimos poucos projetos ao mesmo tempo porque marca de verdade exige convivência: entender como o dinheiro entra, onde a venda trava, o que o cliente fala quando o vendedor não está ouvindo. Isso não cabe num briefing de uma página.',
+      'Se o seu caso não for para nós, dizemos na primeira conversa. Vale mais para os dois lados do que uma proposta educada.',
+    ],
+    pillars: [
+      {
+        title: 'Seleção, não fila',
+        text: 'Avaliamos cada projeto antes de aceitar. Encaixe de escopo, de momento e de expectativa. Não é exclusividade de marketing, é limite de agenda.',
+      },
+      {
+        title: 'Quem pensa é quem executa',
+        text: 'A pessoa que desenha a estratégia é a mesma que assina a entrega. Sem repasse para uma camada de execução que não participou da conversa.',
+      },
+      {
+        title: 'Duas praças, uma cabeça',
+        text: 'Atendemos Brasil e Portugal. São mercados que compram diferente, falam diferente e reagem diferente ao mesmo argumento. Tratamos cada um como ele é.',
+      },
+    ],
+  },
+
+  services: {
+    eyebrow: 'O que fazemos',
+    title: 'Três frentes que só funcionam juntas.',
+    lead: 'Não vendemos pacote solto. Cada frente existe porque a outra precisa dela para parar de pé.',
+    items: [
+      {
+        n: '01',
+        title: 'Branding',
+        text: 'A marca como decisão de negócio, não como manual de cores. Definimos posicionamento, território de fala e sistema visual a partir de onde a empresa quer estar daqui a três anos.',
+        bullets: [
+          'Posicionamento e arquitetura de marca',
+          'Identidade visual e sistema de aplicação',
+          'Narrativa, tom de voz e verbal',
+          'Nomeação e naming de linhas',
+        ],
+      },
+      {
+        n: '02',
+        title: 'Conteúdo',
+        text: 'Conteúdo que constrói autoridade em vez de perseguir alcance. Menos volume, mais peça que continua servindo seis meses depois de publicada.',
+        bullets: [
+          'Linha editorial e pautas com tese',
+          'Direção de arte para social e campanha',
+          'Roteiro e direção audiovisual',
+          'Materiais de venda e apresentação',
+        ],
+      },
+      {
+        n: '03',
+        title: 'Estratégia digital',
+        text: 'A ponte entre a marca e a receita. Onde a pessoa encontra você, o que ela entende em cinco segundos e o que a faz dar o próximo passo.',
+        bullets: [
+          'Sites e páginas de conversão',
+          'Funil, jornada e pontos de contato',
+          'Mídia paga com leitura de marca',
+          'Medição do que importa, não do que é fácil',
+        ],
+      },
+    ],
+  },
+
+  form: {
+    eyebrow: 'Aplicar',
+    title: 'Antes da conversa, quatro perguntas.',
+    lead: 'Não é um "fale conosco". É o que precisamos saber para responder com alguma coisa útil em vez de uma apresentação genérica. Leva dois minutos e a resposta vem em até dois dias úteis.',
+    fields: [
+      { name: 'nome', label: 'Seu nome', kind: 'text', required: true, placeholder: 'Como prefere ser chamado' },
+      { name: 'email', label: 'E-mail', kind: 'email', required: true, placeholder: 'voce@empresa.com.br' },
+      { name: 'empresa', label: 'Empresa ou marca', kind: 'text', required: true, placeholder: 'Nome do negócio' },
+      {
+        name: 'segmento',
+        label: 'Segmento do negócio',
+        kind: 'select',
+        required: true,
+        options: [
+          'Serviço profissional (advocacia, saúde, consultoria)',
+          'Produto físico e varejo',
+          'Tecnologia ou software',
+          'Alimentação e hospitalidade',
+          'Educação e infoproduto',
+          'Imobiliário e construção',
+          'Indústria',
+          'Outro',
+        ],
+      },
+      {
+        name: 'momento',
+        label: 'Momento atual da empresa',
+        kind: 'select',
+        required: true,
+        options: [
+          'Vou lançar, ainda não existe marca',
+          'Existe há pouco tempo e já não dá conta',
+          'Fatura bem, mas a marca não acompanha',
+          'Vamos mudar de posicionamento ou de público',
+          'Vamos entrar num mercado novo',
+          'Precisa de reposicionamento completo',
+        ],
+      },
+      {
+        name: 'desafio',
+        label: 'Qual é o principal desafio hoje',
+        kind: 'textarea',
+        required: true,
+        placeholder: 'Seja específico. "Aumentar vendas" não nos diz nada. "Perdemos para um concorrente mais caro toda vez que chega na proposta" nos diz muito.',
+        hint: 'Quanto mais concreto, melhor a resposta que você recebe.',
+      },
+      {
+        name: 'investimento',
+        label: 'Faixa de investimento previsto',
+        kind: 'select',
+        required: true,
+        options: [
+          'Até R$ 15 mil',
+          'R$ 15 mil a R$ 40 mil',
+          'R$ 40 mil a R$ 80 mil',
+          'Acima de R$ 80 mil',
+          'Ainda não defini',
+        ],
+      },
+    ],
+    submit: 'Enviar aplicação',
+    sending: 'Enviando',
+    note: 'Seus dados ficam com a gente e servem só para responder esta aplicação.',
+    success: {
+      title: 'Recebido.',
+      text: 'Vamos ler com atenção e responder em até dois dias úteis. Se houver encaixe, a próxima conversa já entra no assunto de verdade.',
+    },
+    error: 'Alguma coisa travou no envio. Tente de novo ou escreva direto para o e-mail do rodapé.',
+  },
+
+  footer: {
+    line: 'Estúdio de marca. Brasil e Portugal.',
+    email: 'cucaestudiocriativo@gmail.com',
+    switchLabel: 'Ver a versão de Portugal',
+    rights: 'Todos os direitos reservados.',
+  },
+};

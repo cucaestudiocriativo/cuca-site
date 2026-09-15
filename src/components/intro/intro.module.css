@@ -1,0 +1,419 @@
+/* =========================================================
+   Abertura CUCA. — queda com quique
+   Linha do tempo (ver timeline.ts, os números batem):
+     0ms    letra começa a cair
+     600ms  primeiro impacto   (40%)
+     907ms  segundo quique     (60.5%)
+     1110ms terceiro quique    (74%)
+     1260ms encosta de vez     (84%)
+     1500ms fim da queda, a palavra termina de se formar
+   ========================================================= */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--offwhite);
+  z-index: 60;
+  overflow: hidden;
+  padding: 0 var(--gutter);
+}
+
+/* o tranco do impacto sacode a cena inteira, de leve */
+.shaker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+}
+
+.running .shaker {
+  animation: shake 420ms var(--ease-out) 600ms both;
+}
+
+/* ---------------------------------------------------------
+   A palavra
+   --------------------------------------------------------- */
+
+.word {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: clamp(4rem, 21vw, 12rem);
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  color: var(--dark);
+}
+
+.letter {
+  display: block;
+  opacity: 0;
+  transform: translate3d(0, 0.34em, 0);
+  will-change: transform, opacity;
+}
+
+.running .letter {
+  animation: rise 620ms var(--ease-out) both;
+}
+
+.dot {
+  color: var(--orange);
+}
+
+/* ---------------------------------------------------------
+   O C que cai — pilha de camadas simulando extrusão
+   --------------------------------------------------------- */
+
+.slot {
+  position: relative;
+  /* respiro para a extrusão não encostar no U */
+  margin-right: 0.05em;
+  perspective: 900px;
+  perspective-origin: 50% 46%;
+}
+
+.lite .slot {
+  perspective: none;
+}
+
+.dropper {
+  display: block;
+  will-change: transform;
+  transform: translate3d(0, -118vh, 0) rotate(-9deg);
+}
+
+.running .dropper {
+  animation: drop var(--fall) both;
+}
+
+.squasher {
+  display: block;
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.running .squasher {
+  animation: squash var(--fall) both;
+}
+
+.stack {
+  position: relative;
+  display: block;
+  transform: rotateY(-15deg) rotateX(7deg);
+  transform-style: preserve-3d;
+}
+
+.lite .stack {
+  transform: none;
+}
+
+/* camadas de trás: o "miolo" da extrusão */
+.layer {
+  position: absolute;
+  inset: 0;
+  color: var(--layer-color);
+  transform: translateZ(calc(var(--z) * -1px));
+  pointer-events: none;
+}
+
+.lite .layer {
+  /* sem 3D: deslocamento diagonal faz a mesma leitura de profundidade */
+  transform: translate3d(
+    calc(var(--z) * -0.34px),
+    calc(var(--z) * 0.34px),
+    0
+  );
+}
+
+/* a face da frente, que fica em fluxo e define a largura do slot */
+.face {
+  position: relative;
+  display: block;
+  color: var(--orange);
+}
+
+/* ---------------------------------------------------------
+   Sombra no chão
+   --------------------------------------------------------- */
+
+.shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -0.1em;
+  width: 0.78em;
+  height: 0.12em;
+  margin-left: -0.39em;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(26, 18, 16, 0.3) 0%,
+    rgba(26, 18, 16, 0) 72%
+  );
+  transform: scale(0.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.running .shadow {
+  /* forwards, não both: sem preenchimento para trás, o fade só entra no fim */
+  animation: shadow var(--fall) both,
+    fadeOut var(--flatten-dur) var(--ease-out) var(--flatten-at) forwards;
+}
+
+/* Fechada a queda, a extrusão recolhe e sobra o C chapado da marca:
+   a abertura termina exatamente no logotipo, não numa versão dele. */
+.running .layer {
+  animation: fadeOut var(--flatten-dur) var(--ease-out) var(--flatten-at) both;
+}
+
+.running .stack {
+  animation: unrotate var(--flatten-dur) var(--ease-out) var(--flatten-at) both;
+}
+
+/* ---------------------------------------------------------
+   Estado final (skip, reduced motion, ou fim da animação)
+   --------------------------------------------------------- */
+
+.settled .dropper,
+.settled .squasher,
+.settled .shaker,
+.settled .shadow {
+  animation: none;
+}
+
+.settled .dropper {
+  transform: none;
+}
+
+.settled .squasher {
+  transform: none;
+}
+
+.settled .shadow {
+  opacity: 0;
+}
+
+.settled .layer {
+  animation: none;
+  opacity: 0;
+}
+
+.settled .stack {
+  animation: none;
+  transform: none;
+}
+
+.settled .letter {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------------------------------------------------
+   Controles
+   --------------------------------------------------------- */
+
+.controls {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + clamp(1rem, 3vw, 2rem));
+  right: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--mid);
+  transition: border-color 260ms var(--ease-soft),
+    color 260ms var(--ease-soft), background 260ms var(--ease-soft);
+}
+
+.control:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 12px;
+}
+
+.wave i {
+  display: block;
+  width: 2px;
+  height: 4px;
+  border-radius: 1px;
+  background: currentColor;
+  transform-origin: center;
+}
+
+.waveOn i {
+  animation: wave 900ms var(--ease-soft) infinite;
+}
+
+.waveOn i:nth-child(2) { animation-delay: 140ms; }
+.waveOn i:nth-child(3) { animation-delay: 280ms; }
+.waveOn i:nth-child(4) { animation-delay: 420ms; }
+
+.waveOff i {
+  height: 4px;
+  opacity: 0.45;
+}
+
+/* ---------------------------------------------------------
+   Keyframes
+   --------------------------------------------------------- */
+
+@keyframes drop {
+  0% {
+    transform: translate3d(0, -118vh, 0) rotate(-9deg);
+    animation-timing-function: cubic-bezier(0.55, 0.06, 0.78, 0.35);
+  }
+  40% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    animation-timing-function: cubic-bezier(0.2, 0.75, 0.4, 1);
+  }
+  50% {
+    transform: translate3d(0, -26%, 0) rotate(2.4deg);
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.8, 0.4);
+  }
+  60.5% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    animation-timing-function: cubic-bezier(0.2, 0.75, 0.4, 1);
+  }
+  67.5% {
+    transform: translate3d(0, -9%, 0) rotate(-1.1deg);
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.8, 0.4);
+  }
+  74% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    animation-timing-function: cubic-bezier(0.2, 0.75, 0.4, 1);
+  }
+  79% {
+    transform: translate3d(0, -2.6%, 0) rotate(0.4deg);
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.8, 0.4);
+  }
+  84%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes squash {
+  0%,
+  34% { transform: scale(1, 1); }
+  38% { transform: scale(0.96, 1.05); }
+  40% { transform: scale(1.17, 0.83); }
+  45% { transform: scale(0.95, 1.06); }
+  50%,
+  56% { transform: scale(1, 1); }
+  60.5% { transform: scale(1.09, 0.91); }
+  65% { transform: scale(0.98, 1.03); }
+  70% { transform: scale(1, 1); }
+  74% { transform: scale(1.04, 0.96); }
+  78% { transform: scale(0.995, 1.01); }
+  84% { transform: scale(1.015, 0.985); }
+  90%,
+  100% { transform: scale(1, 1); }
+}
+
+@keyframes shadow {
+  0% { transform: scale(0.16); opacity: 0; }
+  30% { transform: scale(0.34); opacity: 0.35; }
+  40% { transform: scale(1.12); opacity: 1; }
+  50% { transform: scale(0.6); opacity: 0.5; }
+  60.5% { transform: scale(1.04); opacity: 0.94; }
+  67.5% { transform: scale(0.8); opacity: 0.7; }
+  74% { transform: scale(1.01); opacity: 0.96; }
+  84%,
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0% { transform: translate3d(0, 0, 0); }
+  14% { transform: translate3d(0, 9px, 0); }
+  34% { transform: translate3d(0, -4px, 0); }
+  56% { transform: translate3d(0, 2px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes unrotate {
+  from { transform: rotateY(-15deg) rotateX(7deg); }
+  to { transform: rotateY(0deg) rotateX(0deg); }
+}
+
+@keyframes rise {
+  0% { opacity: 0; transform: translate3d(0, 0.34em, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes wave {
+  0%, 100% { height: 4px; }
+  50% { height: 12px; }
+}
+
+/* ---------------------------------------------------------
+   Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .controls {
+    right: 50%;
+    transform: translateX(50%);
+    gap: 0.4rem;
+  }
+  .control {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .running .dropper,
+  .running .squasher,
+  .running .shaker,
+  .running .shadow,
+  .running .layer,
+  .running .stack,
+  .running .letter {
+    animation: none;
+  }
+  .running .dropper,
+  .running .squasher,
+  .running .letter {
+    transform: none;
+  }
+  .running .letter { opacity: 1; }
+  .running .shadow { opacity: 0; }
+  .running .layer { opacity: 0; }
+  .running .stack { transform: none; }
+}
